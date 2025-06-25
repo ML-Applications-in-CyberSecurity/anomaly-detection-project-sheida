@@ -11,7 +11,7 @@ This project implements a comprehensive anomaly detection system that monitors n
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Server.py     │───▶│   Client.py     │───▶│  Together AI    │
+│   Server.py     │ ─▶│   Client.py     │───▶│  Together AI    │
 │ (Data Stream)   │    │ (ML Detection)  │    │ (LLM Analysis)  │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
