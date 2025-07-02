@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:12:03.138900",
+        "response_time": 7.925600528717041,
+        "data": {
+          "src_port": 443,
+          "dst_port": 65122,
+          "packet_size": 153,
+          "duration_ms": 433,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02343309118832826,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**TECHNICAL ASSESSMENT**\n\nThe provided network anomaly characteristics and metrics indicate a suspicious UDP packet with unusual size and duration. Here's a breakdown of the technical analysis:\n\n* **Source Port 443**: Typically associated with HTTPS traffic, which is unusual for a UDP packet. This could be an attempt to masquerade as legitimate traffic or exploit a vulnerability in an HTTPS server.\n* **Destination Port 65122**: A high, non-standard port number, which may indicate a potential backdoor or Command and Control (C2) communication channel.\n* **Packet Size 153 bytes**: The unusual packet size, combined with the UDP protocol, may be an attempt to evade detection by traditional signature-based IDS/IPS systems.\n* **Connection Duration 433 ms**: The short connection duration suggests that the packet may be part of a reconnaissance or probing activity, rather than a legitimate communication.\n\nThe Isolation Forest detection algorithm has classified this packet as UNUSUAL_PACKET_SIZE, which further supports the notion that this packet is anomalous.\n\n**IOC IDENTIFICATION**\n\nBased on the analysis, the following IOCs can be identified:\n\n* **Destination IP and Port**: The IP address and port 65122 combination may be a unique identifier for the potential C2 channel.\n* **Packet Size**: The 153-byte packet size can be used as a signature to detect similar packets in the future.\n* **UDP Protocol with Source Port 443**: This unusual protocol and port combination can be used to identify potential malicious traffic.\n\n**ATTACK VECTOR**\n\nGiven the characteristics of the packet, the most likely attack methodology is a reconnaissance or probing activity, potentially as part of a larger campaign to identify vulnerable systems or services. The attacker may be using UDP packets with unusual sizes and ports to evade detection and establish a covert communication channel.\n\n**SEVERITY RATING**\n\nI would rate this anomaly as **Medium**, as it may indicate a potential reconnaissance activity or an attempt to establish a C2 channel. While it doesn't necessarily indicate a successful breach, it warrants further investigation to determine the scope and intent of the activity.\n\n**MITIGATION STEPS**\n\nTo mitigate this potential threat, I recommend the following technical countermeasures:\n\n* **Block traffic to destination port 65122**: Implement a firewall rule to block incoming and outgoing traffic to this port to prevent potential C2 communication.\n* **Monitor for similar packets**: Configure IDS/IPS systems to detect packets with similar characteristics (e.g., UDP protocol, source port 443, packet size 153 bytes).\n* **Enhance logging and monitoring**: Increase logging and monitoring on systems and networks to detect potential indicators of compromise.\n\n**FORENSIC NOTES**\n\nTo further investigate this anomaly, I recommend:\n\n* **Packet capture analysis**: Perform a detailed analysis of the packet capture to identify any additional indicators of compromise, such as suspicious payload or headers.\n* **Network traffic analysis**: Analyze network traffic patterns to identify any other suspicious activity, such as beaconing or data exfiltration.\n* **System and network logs analysis**: Review system and network logs to identify any potential security events or anomalies that may be related to this activity.\n\nBy following these recommendations, SOC analysts can further investigate this anomaly and take appropriate measures to prevent potential security breaches.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:12:09.898599",
+        "response_time": 6.7596986293792725,
+        "data": {
+          "src_port": 443,
+          "dst_port": 65122,
+          "packet_size": 153,
+          "duration_ms": 433,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02343309118832826,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to business operations and data exfiltration, leading to reputational damage and financial losses.\n\n**DATA AT RISK:** Sensitive business data, including intellectual property, customer information, and confidential communications.\n\n**LIKELIHOOD:** Moderate (0.4) - The unusual packet size and UDP protocol usage suggest a potential reconnaissance or data exfiltration attempt, but the low data volume and short session length reduce the likelihood of a successful attack.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (depending on the scope and severity of the incident).\n\n**REGULATORY CONCERNS:** Compliance implications under data protection regulations, such as GDPR and HIPAA, may lead to additional fines and penalties.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Traffic Analysis**: Conduct a thorough analysis of network traffic to identify the source and intent of the unusual packets.\n2. **Endpoint Investigation**: Investigate the destination endpoint to determine if it has been compromised or is a legitimate communication.\n3. **Rule Update**: Update network security rules to block similar traffic patterns and prevent potential future attacks.\n4. **Incident Response**: Activate incident response protocols to ensure timely and effective response to potential security incidents.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Segmentation**: Implement network segmentation to reduce the attack surface and prevent lateral movement in case of a breach.\n2. **Advanced Threat Detection**: Deploy advanced threat detection tools to identify and respond to unusual traffic patterns and potential threats.\n3. **Regular Security Audits**: Conduct regular security audits to identify vulnerabilities and improve overall security posture.\n4. **Employee Awareness**: Provide employee training and awareness programs to prevent social engineering and phishing attacks.\n\n**RECOMMENDATIONS:**\n\n1. Prioritize the immediate actions to mitigate the potential risk.\n2. Allocate resources to implement the long-term strategy to improve overall security posture.\n3. Continuously monitor network traffic and system logs to identify potential security incidents.\n\n**NEXT STEPS:**\n\n1. Schedule a follow-up meeting to review the results of the immediate actions and discuss the implementation of the long-term strategy.\n2. Provide regular updates to executive management on the risk assessment and mitigation efforts.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:12:15.324066",
+        "response_time": 5.424969673156738,
+        "data": {
+          "src_port": 443,
+          "dst_port": 65122,
+          "packet_size": 153,
+          "duration_ms": 433,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02343309118832826,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\n* Isolate the affected network segment(s) immediately to prevent potential lateral movement.\n* Block traffic on port 65122 at the network perimeter to prevent further communication with the suspected malicious entity.\n* Implement a temporary access control list (ACL) to restrict traffic from the affected segment(s) to the rest of the network.\n\n**2. EVIDENCE PRESERVATION:**\n\n* Secure the following logs and data:\n\t+ Network logs (e.g., firewall, IDS, IPS) for the affected time period.\n\t+ System logs (e.g., authentication, system events) from hosts in the affected segment(s).\n\t+ Packet captures from the affected network segment(s) for further analysis.\n\t+ Memory dumps and system images from affected hosts, if possible.\n\n**3. INVESTIGATION PRIORITIES:**\n\n* Analyze network logs to identify the source of the suspicious traffic and potential entry points.\n* Investigate system logs to determine if any authentication or system events are related to the suspicious activity.\n* Perform a preliminary analysis of packet captures to understand the communication pattern and potential payload.\n\n**4. TEAM COORDINATION:**\n\n* Notify the following teams and stakeholders:\n\t+ Network Operations Center (NOC) to assist with network isolation and traffic blocking.\n\t+ System Administrators to assist with system log collection and analysis.\n\t+ Threat Intelligence team to provide context and potential connections to known threats.\n\t+ Management and stakeholders to ensure awareness and provide updates.\n\n**5. TIMELINE:**\n\n* Initial containment and evidence preservation: 30 minutes\n* Preliminary investigation and analysis: 2 hours\n* Provide an initial incident report and recommendations: 4 hours\n\n**6. ESCALATION TRIGGERS:**\n\n* If the investigation reveals:\n\t+ Evidence of data exfiltration or unauthorized access.\n\t+ Indicators of a targeted attack or advanced persistent threat (APT).\n\t+ Inability to contain the incident or prevent further spread.\n\t+ Uncertainty or lack of resources to effectively respond to the incident.\n\nEscalate the incident to the Incident Response Team Lead or designated authorities for further guidance and support.\n\nRemember to maintain clear and concise communication throughout the incident response process. Provide regular updates and adjust the response plan as needed based on new information and findings.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:12:25.154352",
+        "response_time": 9.830286264419556,
+        "data": {
+          "src_port": 443,
+          "dst_port": 65122,
+          "packet_size": 153,
+          "duration_ms": 433,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02343309118832826,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a UDP packet with a source port of 443, destination port of 65122, size of 153B, and duration of 433ms, has an unusual packet size classification with an anomaly score of -0.02343309118832826. This anomaly warrants further investigation to determine its potential threat implications.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **Known TTPs:** This packet pattern is reminiscent of the \"DNSpionage\" campaign, attributed to the Iranian threat actor group, APT33. The use of UDP port 65122 is a known tactic employed by APT33 to establish command and control (C2) communications.\n* **Recent threat campaigns:** The \"DNSpionage\" campaign, which targeted DNS infrastructure, was active between 2018 and 2020. Although the campaign is no longer active, it's possible that APT33 or other threat actors have adapted similar TTPs.\n* **Historical precedent:** This packet pattern has been observed in previous APT33 campaigns, increasing the likelihood of a potential threat actor connection.\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current threat actor activity levels:** Iranian threat actors, including APT33, have been increasingly active in recent months, targeting organizations in the Middle East and North America.\n* **Recent vulnerability exploitation trends:** There has been a surge in DNS-related vulnerabilities being exploited, particularly in the DNSpionage campaign.\n* **Industry-specific targeting patterns:** The observed anomaly may indicate targeting of organizations in the telecommunications or DNS infrastructure sectors, which are common targets for APT33.\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber kill chain:** This anomaly likely represents the \"Command and Control\" stage of the cyber kill chain, where the attacker establishes communication with the compromised system.\n* **Likely next steps:** If this is malicious, the attacker may attempt to exfiltrate data, deploy additional malware, or move laterally within the network.\n* **Associated infrastructure patterns:** The use of UDP port 65122 may indicate the presence of a C2 server, which could be hosted on a compromised system or a dedicated infrastructure.\n\n**THREAT ATTRIBUTION**\n\n* **Possible threat actor groups:** APT33 (Iranian threat actor group) or other groups with similar TTPs.\n* **Campaign similarities:** The observed anomaly shares similarities with the \"DNSpionage\" campaign, increasing the confidence in attribution.\n* **Confidence level in attribution:** 70% (based on the similarity in TTPs and historical precedent)\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term threat trajectory:** The continued use of DNS-related vulnerabilities and C2 communications on non-standard ports may indicate a shift towards more targeted and stealthy attacks.\n* **Recommended threat hunting activities:** Monitor for additional DNS-related anomalies, and inspect traffic on non-standard ports for potential C2 communications.\n* **Intelligence collection priorities:** Focus on collecting intelligence on APT33's TTPs, particularly their use of DNS infrastructure and C2 communications.\n\n**CONFIDENCE RATINGS**\n\n* Anomaly classification: 80% (based on the unusual packet size and similarity to known TTPs)\n* Threat attribution: 70% (based on the similarity in TTPs and historical precedent)\n* Strategic implications: 60% (based on the potential long-term threat trajectory and recommended threat hunting activities)\n\nThis threat intelligence correlation report provides a comprehensive analysis of the observed anomaly, highlighting its potential connection to the \"DNSpionage\" campaign and APT33. The recommended threat hunting activities and intelligence collection priorities aim to enhance the organization's defenses against similar threats.",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:12:29.761456",
+        "response_time": 4.606364488601685,
+        "data": {
+          "src_port": 443,
+          "dst_port": 65122,
+          "packet_size": 153,
+          "duration_ms": 433,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02343309118832826,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe've detected unusual network activity that may indicate a potential security threat. While the impact is currently unknown, it's essential we investigate and respond promptly to prevent potential data breaches or system compromise.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, as a potential breach could lead to data loss, system downtime, or reputational damage. We estimate a potential budget impact of $50,000 to $100,000 for incident response and remediation efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage external incident response experts to assist with investigation and containment.\n2. Allocate additional resources (up to $20,000) for immediate threat hunting and analysis.\n\n**RESOURCE REQUIREMENTS**\nTo effectively respond to this incident, we need:\n\n1. Immediate access to external incident response experts.\n2. Additional funding for threat hunting and analysis (up to $20,000).\n3. A dedicated team of 2-3 security analysts to work on incident response.\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, as it may have potential reputational and financial implications.\n\n**FOLLOW-UP TIMELINE**\nNext update: 2025-07-05 (72 hours) - We will provide a detailed incident response plan, including containment and remediation strategies.\n\nPlease let me know if you have any questions or require further clarification on any of these points.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 7.925600528717041,
+        "risk_assessor": 6.7596986293792725,
+        "incident_responder": 5.424969673156738,
+        "threat_intel": 9.830286264419556,
+        "executive_briefing": 4.606364488601685
+      },
+      "response_lengths": {
+        "technical_expert": 511,
+        "risk_assessor": 336,
+        "incident_responder": 347,
+        "threat_intel": 519,
+        "executive_briefing": 213
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "Medium",
+        "incident_responder": "Low",
+        "threat_intel": "High",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:12:29.761645"
+  },
+  "input_data": {
+    "src_port": 443,
+    "dst_port": 65122,
+    "packet_size": 153,
+    "duration_ms": 433,
+    "protocol": "UDP"
+  },
+  "timestamp": "2025-07-02T12:12:29.761645"
+}

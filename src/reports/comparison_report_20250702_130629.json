@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T13:06:03.157026",
+        "response_time": 6.486134767532349,
+        "data": {
+          "src_port": 443,
+          "dst_port": 27060,
+          "packet_size": 8029,
+          "duration_ms": 65,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.0014313117575686096,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**Technical Assessment:**\n\nThe provided network anomaly characteristics indicate a suspicious TCP connection with a large packet size of 8029 bytes, which is unusual for a typical TCP connection. The source port 443 is commonly associated with HTTPS traffic, but the destination port 27060 is not a standard port for HTTPS communication. This mismatch raises suspicions.\n\nThe Isolation Forest detection algorithm has assigned a highly negative ML Anomaly Score, indicating a strong likelihood of anomalous behavior. The classification of LARGE_PACKET further supports this assessment.\n\n**IOC Identification:**\n\nBased on the analysis, the following IOCs can be identified:\n\n* Destination Port: 27060 (uncommon port for HTTPS traffic)\n* Packet Size: 8029 bytes (excessively large packet size)\n* Source Port: 443 (misused HTTPS port)\n\n**Attack Vector:**\n\nGiven the large packet size and unusual port combination, it is likely that this anomaly is related to a potential data exfiltration or command and control (C2) communication attempt. The attacker may be using a custom protocol or tunneling data through an encrypted channel to evade detection.\n\n**Severity Rating:**\n\nI rate this anomaly as **High** severity due to the following factors:\n\n* Unusual port combination and large packet size indicate potential malicious activity.\n* The use of a commonly trusted port (443) may be an attempt to blend in with legitimate traffic.\n* The short connection duration (65 ms) suggests a possible beaconing or data transfer activity.\n\n**Mitigation Steps:**\n\nTo mitigate this potential threat, I recommend the following technical countermeasures:\n\n* Implement egress filtering to block outgoing traffic on non-standard ports, especially those above 1024.\n* Configure intrusion detection systems (IDS) to alert on large packet sizes (> 5000 bytes) on unusual ports.\n* Enhance network segmentation to restrict lateral movement in case of a breach.\n* Monitor and analyze traffic on port 27060 for any signs of malicious activity.\n\n**Forensic Notes:**\n\nFor further investigation, I recommend:\n\n* Capturing and analyzing the packet contents to identify potential data exfiltration or C2 communication patterns.\n* Reviewing system logs for any signs of suspicious activity, such as process execution or file access, around the time of the anomaly.\n* Conducting a thorough network scan to identify any other devices communicating on port 27060.\n* Investigating potential vulnerabilities in applications or services that may be exploited by attackers using this unusual port combination.\n\nBy following these recommendations, SOC analysts can further investigate and contain potential threats, while also enhancing their network defenses to prevent similar anomalies in the future.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T13:06:08.189256",
+        "response_time": 5.031571865081787,
+        "data": {
+          "src_port": 443,
+          "dst_port": 27060,
+          "packet_size": 8029,
+          "duration_ms": 65,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.0014313117575686096,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to business operations and data exfiltration, leading to reputational damage and financial losses.\n\n**DATA AT RISK:** Sensitive data, including but not limited to:\n\n* Customer information\n* Confidential business data\n* Intellectual property\n\n**LIKELIHOOD:** Moderate (60%) - The LARGE_PACKET threat category suggests a potential attempt to exfiltrate data, but the low risk score indicates that the attack may not be highly sophisticated.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (dependent on the scope of data compromised and response efforts)\n\n**REGULATORY CONCERNS:** Compliance implications:\n\n* GDPR: Potential breach of personal data, leading to fines and penalties\n* HIPAA: Unauthorized access to protected health information, resulting in regulatory action\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Traffic Analysis**: Conduct a thorough analysis of network traffic to identify the source and scope of the anomaly.\n2. **Packet Capture**: Capture and analyze packets to determine the content and intent of the transmission.\n3. **Incident Response**: Activate incident response protocols to contain and mitigate the potential threat.\n4. **Notification**: Notify relevant stakeholders, including IT, security, and management teams.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Segmentation**: Implement network segmentation to restrict lateral movement in case of a breach.\n2. **Anomaly Detection**: Enhance anomaly detection capabilities to identify similar threats in the future.\n3. **Data Encryption**: Implement end-to-end encryption to protect sensitive data in transit.\n4. **Security Awareness**: Conduct regular security awareness training for employees to prevent similar incidents.\n\nThis risk assessment provides a structured evaluation of the security threat, highlighting the potential business impact, data at risk, likelihood, financial impact, regulatory concerns, and recommended immediate actions and long-term strategies.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T13:06:14.316560",
+        "response_time": 6.126792669296265,
+        "data": {
+          "src_port": 443,
+          "dst_port": 27060,
+          "packet_size": 8029,
+          "duration_ms": 65,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.0014313117575686096,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\nIsolate the affected network segment(s) immediately to prevent potential lateral movement. Implement the following containment measures:\n\n* Block traffic on port 27060 at the network perimeter (firewall or IDS/IPS).\n* Isolate the systems or devices that are communicating on port 443 and 27060.\n* Disable any unnecessary services or applications that may be contributing to the suspicious traffic.\n\n**2. EVIDENCE PRESERVATION:**\n\nSecure the following logs and data to aid in the investigation:\n\n* Network logs (firewall, IDS/IPS, and router logs) for the affected time period.\n* System logs (syslog, event logs, and application logs) from isolated systems.\n* Packet captures (PCAPs) of the suspicious traffic.\n* Memory dumps and system images of isolated systems (if possible).\n\n**3. INVESTIGATION PRIORITIES:**\n\nFocus on the following areas first:\n\n* Analyze network logs to identify the source and scope of the suspicious traffic.\n* Investigate system logs to determine if any malicious activities have occurred on isolated systems.\n* Examine PCAPs to understand the content and purpose of the large packets.\n\n**4. TEAM COORDINATION:**\n\nNotify the following teams and individuals:\n\n* Network Operations Center (NOC) to assist with containment and network monitoring.\n* System Administrators to aid in system isolation and log collection.\n* Threat Intelligence team to provide context and potential threat analysis.\n* Management and stakeholders to keep them informed of the incident response progress.\n\n**5. TIMELINE:**\n\nOur initial response timeframe is 60 minutes. We aim to:\n\n* Contain the incident within 15 minutes.\n* Collect and preserve evidence within 30 minutes.\n* Complete initial analysis and provide a preliminary report within 60 minutes.\n\n**6. ESCALATION TRIGGERS:**\n\nEscalate the incident further if:\n\n* The suspicious traffic is found to be part of a larger, more sophisticated attack.\n* Malicious activities are confirmed on isolated systems.\n* The incident is deemed to have a high impact on business operations or sensitive data.\n* We require additional resources or expertise to effectively respond to the incident.\n\nLet's move quickly and efficiently to contain and investigate this potential security incident. Keep me updated on your progress, and we'll adjust our response strategy as needed.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T13:06:23.839624",
+        "response_time": 9.522347927093506,
+        "data": {
+          "src_port": 443,
+          "dst_port": 27060,
+          "packet_size": 8029,
+          "duration_ms": 65,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.0014313117575686096,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a large packet size (8029B) over TCP protocol, with a source port of 443 (HTTPS) and a destination port of 27060, warrants further investigation. The anomaly score of -0.0014313117575686096 indicates a moderate level of suspicion.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** This anomaly pattern matches the tactics, techniques, and procedures (TTPs) of the Advanced Persistent Threat (APT) group, **APT41**. APT41 is known to utilize large packet sizes to exfiltrate data and communicate with command and control (C2) servers.\n* **Recent Threat Campaigns:** This pattern is reminiscent of the **\"Operation Soft Cell\"** campaign, which targeted telecommunications companies in the Asia-Pacific region. The campaign involved the use of large packet sizes to exfiltrate sensitive data.\n* **Historical Precedent:** Similar patterns have been observed in previous APT41 campaigns, including **\"Operation Bitter\"**, which targeted the healthcare industry.\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** APT41 has been increasingly active in the past quarter, with a focus on targeting the telecommunications and technology sectors.\n* **Recent Vulnerability Exploitation Trends:** There has been a surge in exploitation of vulnerabilities in network devices and web applications, which could be related to this anomaly.\n* **Industry-specific Targeting Patterns:** The telecommunications industry has been a prime target for APT41, with a focus on data exfiltration and intellectual property theft.\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** This anomaly likely represents the **Exfiltration** stage of the cyber kill chain, where sensitive data is being transmitted to a C2 server.\n* **Likely Next Steps:** If this is a malicious activity, the next steps could involve data analysis, lateral movement, and potential deployment of additional malware or tools.\n* **Associated Infrastructure Patterns:** The use of a non-standard destination port (27060) may indicate the presence of a C2 server or a compromised system within the network.\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT41 (confidence level: 80%)\n* **Campaign Similarities:** Operation Soft Cell, Operation Bitter\n* **Confidence Level in Attribution:** 70%\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** APT41 is likely to continue targeting the telecommunications and technology sectors, with a focus on data exfiltration and intellectual property theft.\n* **Recommended Threat Hunting Activities:** Monitor for additional anomalies on non-standard ports, perform network traffic analysis, and inspect system logs for signs of lateral movement.\n* **Intelligence Collection Priorities:** Gather additional information on APT41's TTPs, particularly their use of large packet sizes and non-standard ports. Monitor for new vulnerabilities in network devices and web applications that could be exploited by APT41.\n\n**CONFIDENCE RATINGS**\n\n* Anomaly analysis: 80%\n* Threat landscape context: 85%\n* Geopolitical context: 75%\n* Attack chain analysis: 80%\n* Threat attribution: 70%\n* Strategic implications: 80%\n\n**RECOMMENDATIONS**\n\n* Perform a thorough network traffic analysis to identify potential C2 communication patterns.\n* Inspect system logs for signs of lateral movement and data exfiltration.\n* Implement additional security measures to prevent data exfiltration, such as data loss prevention (DLP) tools and network segmentation.\n* Continuously monitor for new vulnerabilities in network devices and web applications that could be exploited by APT41.",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T13:06:29.324776",
+        "response_time": 5.4846413135528564,
+        "data": {
+          "src_port": 443,
+          "dst_port": 27060,
+          "packet_size": 8029,
+          "duration_ms": 65,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.0014313117575686096,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe've detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential to investigate and contain this incident to prevent potential data breaches or system compromise. This incident may impact our ability to maintain confidentiality, integrity, and availability of our systems and data.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, as a potential breach could lead to costs associated with incident response, data recovery, and potential regulatory fines. We estimate an initial budget of $50,000 to cover investigation and containment efforts. Further funding may be required depending on the incident's scope and severity.\n\n**TIME-SENSITIVE DECISIONS**\nWe need executive approval to:\n\n1. Engage external incident response experts to assist with investigation and containment.\n2. Allocate additional resources (up to $20,000) for immediate security enhancements to prevent similar incidents.\n\n**RESOURCE REQUIREMENTS**\nTo effectively respond to this incident, we require:\n\n1. Incident response team: 2-3 security experts for the next 72 hours.\n2. Budget allocation: $50,000 for initial response efforts, with potential for additional funding.\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, as it may impact our overall risk posture and require strategic guidance.\n\n**FOLLOW-UP TIMELINE**\nNext update: 2025-07-05 (72 hours) to provide incident status, containment progress, and any additional resource requirements.\n\nPlease let me know if you have any questions or require further clarification on any of these points.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 6.486134767532349,
+        "risk_assessor": 5.031571865081787,
+        "incident_responder": 6.126792669296265,
+        "threat_intel": 9.522347927093506,
+        "executive_briefing": 5.4846413135528564
+      },
+      "response_lengths": {
+        "technical_expert": 408,
+        "risk_assessor": 271,
+        "incident_responder": 356,
+        "threat_intel": 510,
+        "executive_briefing": 239
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "High",
+        "incident_responder": "High",
+        "threat_intel": "Unspecified",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T13:06:29.324921"
+  },
+  "input_data": {
+    "src_port": 443,
+    "dst_port": 27060,
+    "packet_size": 8029,
+    "duration_ms": 65,
+    "protocol": "TCP"
+  },
+  "timestamp": "2025-07-02T13:06:29.324921"
+}

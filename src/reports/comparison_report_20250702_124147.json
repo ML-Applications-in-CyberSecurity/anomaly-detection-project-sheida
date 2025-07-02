@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:41:18.414199",
+        "response_time": 10.974404573440552,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 64748,
+          "packet_size": 451,
+          "duration_ms": 210,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.009491370821634537,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**Technical Assessment**\n\nThe provided network anomaly characteristics and metrics suggest a potential malicious activity. Here's a detailed technical analysis:\n\n* **Source Port 8080**: This port is commonly used for HTTP proxying, but it's unusual to see it as the source port in a UDP connection. This could indicate a potential attempt to masquerade as a legitimate HTTP proxy or to exploit a vulnerability in a proxy server.\n* **Destination Port 64748**: This is a high-range, ephemeral port, which is often used for temporary or dynamic port assignments. It's unusual to see a UDP connection to such a high port, as most UDP-based services use well-known ports (e.g., DNS, NTP, or DHCP).\n* **Packet Size 451 bytes**: This packet size is relatively large for a UDP packet, especially considering the connection duration is only 210 ms. This could indicate that the packet contains malicious payload or is part of a data exfiltration attempt.\n* **Connection Duration 210 ms**: This short connection duration suggests that the communication might be part of a reconnaissance or scanning activity, rather than a legitimate data transfer.\n\nThe Isolation Forest detection algorithm has classified this anomaly as a PROTOCOL_PORT_MISMATCH, which is consistent with the unusual port combination and packet size.\n\n**IOC Identification**\n\nBased on the analysis, the following IOCs can be identified:\n\n* Source port 8080\n* Destination port 64748\n* Packet size 451 bytes\n* UDP protocol\n* Short connection duration (210 ms)\n\n**Attack Vector**\n\nThe most likely attack methodology is a reconnaissance or scanning activity, potentially using UDP as a covert channel to evade detection. The attacker might be attempting to identify open ports, services, or vulnerabilities on the targeted system. Alternatively, this could be a data exfiltration attempt, using UDP to transfer sensitive information.\n\n**Severity Rating**\n\nI would rate this anomaly as **Medium**, as it exhibits suspicious characteristics, but it's unclear whether it's a targeted attack or a reconnaissance activity. However, the unusual port combination and packet size warrant further investigation.\n\n**Mitigation Steps**\n\nTo mitigate this potential threat, I recommend:\n\n1. **Block traffic**: Temporarily block incoming UDP traffic on port 64748 at the network perimeter.\n2. **Monitor traffic**: Closely monitor traffic on port 8080 and 64748 for any suspicious activity.\n3. **Inspect packets**: Perform deep packet inspection to analyze the contents of the 451-byte packets.\n4. **Update firewall rules**: Review and update firewall rules to ensure that they are aligned with the organization's security policies.\n\n**Forensic Notes**\n\nFor further investigation, I recommend:\n\n1. **Packet capture**: Capture and analyze the packet contents to identify any potential malicious payload.\n2. **System logs**: Review system logs to identify any suspicious activity or connections related to the targeted system.\n3. **Network traffic analysis**: Perform a comprehensive network traffic analysis to identify any other suspicious activity or patterns.\n4. **Endpoint analysis**: Analyze the targeted system's endpoint logs and processes to identify any potential indicators of compromise.\n\nBy following these recommendations, the SOC analysts can further investigate and contain this potential threat, and take proactive measures to prevent similar incidents in the future.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:41:24.613948",
+        "response_time": 6.198953628540039,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 64748,
+          "packet_size": 451,
+          "duration_ms": 210,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.009491370821634537,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to network services and data transfer, potentially leading to delays in business operations and decision-making.\n\n**DATA AT RISK:** Unidentified data, potentially including sensitive information such as user credentials, financial data, or confidential business information.\n\n**LIKELIHOOD:** Moderate (0.4) - The anomaly data suggests a possible protocol port mismatch, which could be indicative of a scanning or probing attempt. However, the low data volume and short session length reduce the likelihood of a successful attack.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $10,000 - $50,000 - This estimate is based on the potential costs of incident response, data recovery, and potential reputational damage.\n\n**REGULATORY CONCERNS:** Compliance implications are moderate, as the potential breach may involve sensitive data. This could lead to reporting requirements and potential fines under regulations such as GDPR or HIPAA.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Traffic Analysis:** Conduct a thorough analysis of network traffic to determine the source and intent of the anomaly.\n2. **Port Configuration Review:** Review port configurations to ensure they are properly secured and aligned with business requirements.\n3. **IDS/IPS Tuning:** Fine-tune Intrusion Detection/Prevention Systems to improve detection and response to similar anomalies.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Segmentation:** Implement network segmentation to reduce the attack surface and limit lateral movement in case of a breach.\n2. **Advanced Threat Detection:** Deploy advanced threat detection tools to improve detection and response to unknown threats.\n3. **Regular Security Audits:** Conduct regular security audits to identify and remediate vulnerabilities, reducing the risk of future breaches.\n\n**RECOMMENDATIONS:**\n\n* Allocate resources for immediate actions and long-term strategy implementation.\n* Conduct a thorough incident response plan review to ensure readiness in case of a breach.\n* Provide security awareness training to employees to reduce the risk of social engineering attacks.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:41:32.641491",
+        "response_time": 8.026972532272339,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 64748,
+          "packet_size": 451,
+          "duration_ms": 210,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.009491370821634537,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\n* Isolate the affected network segment(s) immediately to prevent potential lateral movement.\n* Block traffic on port 8080 and 64748 at the network perimeter (firewall, IDS/IPS) to prevent further communication with the suspected malicious entity.\n* Identify and isolate any hosts that have been communicating with the suspicious IP addresses.\n\n**2. EVIDENCE PRESERVATION:**\n\n* Secure the following logs and data:\n\t+ Network logs (firewall, IDS/IPS, router logs) for the affected time period.\n\t+ System logs (syslog, event logs) from isolated hosts.\n\t+ Packet captures from the affected network segment(s).\n\t+ NetFlow/IPFIX data for traffic analysis.\n* Preserve volatile data (e.g., system memory, running processes) from isolated hosts.\n\n**3. INVESTIGATION PRIORITIES:**\n\n* Analyze network logs to identify the source and scope of the suspicious traffic.\n* Investigate isolated hosts for signs of malware, unauthorized access, or data exfiltration.\n* Review system logs for suspicious activity, such as unusual login attempts or file access.\n* Perform a preliminary analysis of packet captures to understand the communication protocol and potential data transfer.\n\n**4. TEAM COORDINATION:**\n\n* Notify the following teams/stakeholders:\n\t+ Network Operations Center (NOC) to assist with network isolation and traffic blocking.\n\t+ System Administrators to assist with host isolation and log collection.\n\t+ Threat Intelligence team to analyze the suspected threat type and provide context.\n\t+ Management/Executive team to inform them of the incident and response efforts.\n\n**5. TIMELINE:**\n\n* Initial containment and evidence preservation: 30 minutes\n* Preliminary investigation and analysis: 2 hours\n* Incident assessment and response plan development: 4 hours\n* Ongoing monitoring and response: continuous until incident resolution\n\n**6. ESCALATION TRIGGERS:**\n\n* If the incident is confirmed to be a security breach, escalate to the Incident Response Team Lead and Management/Executive team.\n* If the incident is suspected to involve sensitive data or high-impact systems, escalate to the Incident Response Team Lead and Management/Executive team.\n* If the incident response team requires additional resources or expertise, escalate to the Incident Response Team Lead and Management/Executive team.\n\nRemember to stay focused, communicate clearly, and prioritize rapid containment and resolution. Let's work together to respond to this incident effectively!",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:41:42.371863",
+        "response_time": 9.729718446731567,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 64748,
+          "packet_size": 451,
+          "duration_ms": 210,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.009491370821634537,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a UDP packet with a source port of 8080, destination port of 64748, and a size of 451B, has been analyzed in the context of the current threat landscape and known attack campaigns.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** The protocol-port mismatch pattern is reminiscent of the \"EternalRomance\" exploit, a known vulnerability in Windows SMBv1 (CVE-2017-0144). This exploit was widely used by threat actors, including nation-state sponsored groups, in 2017-2018.\n* **Recent Threat Campaigns:** There have been recent reports of a resurgence in EternalRomance exploitation, particularly in the Asia-Pacific region, targeting vulnerable SMBv1 implementations.\n* **Historical Precedent:** This pattern has been observed in previous attacks, including the WannaCry and NotPetya campaigns, which leveraged the EternalBlue exploit (CVE-2017-0144) to spread malware.\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity:** Nation-state sponsored groups, such as APT33 and APT37, have been increasingly active in the Asia-Pacific region, targeting industries including finance, energy, and government.\n* **Vulnerability Exploitation Trends:** There has been a surge in exploitation of SMBv1 vulnerabilities, particularly in the wake of recent patching efforts.\n* **Industry-Specific Targeting:** The finance and energy sectors have been disproportionately targeted by threat actors in recent months, with a focus on data exfiltration and disruption.\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** This anomaly likely represents the \"Delivery\" stage of the cyber kill chain, where an attacker is attempting to establish a foothold on the network.\n* **Likely Next Steps:** If this is malicious, the attacker may attempt to exploit the vulnerability to gain access to the network, followed by lateral movement and data exfiltration.\n* **Associated Infrastructure Patterns:** The use of UDP port 64748 is uncommon, but may indicate a custom or modified exploit payload. Further analysis is required to identify potential command and control (C2) infrastructure.\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT33, APT37, or other nation-state sponsored groups with a history of exploiting SMBv1 vulnerabilities.\n* **Campaign Similarities:** The observed pattern bears resemblance to the \"EternalRomance\" campaign, which was attributed to APT33.\n* **Confidence Level:** 70% (based on the TTP match, recent campaign activity, and geopolitical context)\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** The resurgence of EternalRomance exploitation suggests a continued focus on vulnerable SMBv1 implementations. Organizations should prioritize patching and vulnerability management.\n* **Recommended Threat Hunting Activities:** Monitor for additional indicators of compromise (IOCs) related to EternalRomance, such as suspicious SMBv1 traffic or exploitation attempts.\n* **Intelligence Collection Priorities:** Focus on gathering additional information on APT33 and APT37 activities, including C2 infrastructure and malware payloads.\n\n**CONFIDENCE RATINGS**\n\n* Anomaly classification: 90% (based on protocol-port mismatch pattern)\n* Threat landscape context: 80% (based on TTP match and recent campaign activity)\n* Geopolitical context: 70% (based on current threat actor activity and vulnerability exploitation trends)\n* Attack chain analysis: 80% (based on cyber kill chain stage and likely next steps)\n* Threat attribution: 70% (based on campaign similarities and confidence level)\n* Strategic implications: 80% (based on long-term threat trajectory and recommended threat hunting activities)",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:41:47.044878",
+        "response_time": 4.67254376411438,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 64748,
+          "packet_size": 451,
+          "duration_ms": 210,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.009491370821634537,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe've detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential we investigate and respond promptly to prevent potential data breaches or system compromise. This incident may impact our ability to operate efficiently and maintain customer trust.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, with potential costs associated with incident response, system remediation, and possible data breach notification. We estimate an initial budget allocation of $50,000 to cover investigation and containment efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage external incident response experts to assist with investigation and containment (estimated cost: $20,000).\n2. Allocate additional internal resources (2-3 team members) to support the incident response effort.\n\n**RESOURCE REQUIREMENTS**\nTo effectively respond to this incident, we need:\n\n1. Approval for the above-mentioned external experts and internal resource allocation.\n2. Access to relevant system logs and data to facilitate investigation.\n\n**BOARD REPORTING**\nWe recommend reporting this incident to the board, given the potential impact on business operations and customer trust. A brief summary of the incident and our response efforts should be included in the next board meeting.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a detailed update on the incident response effort in 72 hours, including any findings, containment measures, and recommendations for further action.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 10.974404573440552,
+        "risk_assessor": 6.198953628540039,
+        "incident_responder": 8.026972532272339,
+        "threat_intel": 9.729718446731567,
+        "executive_briefing": 4.67254376411438
+      },
+      "response_lengths": {
+        "technical_expert": 503,
+        "risk_assessor": 296,
+        "incident_responder": 357,
+        "threat_intel": 503,
+        "executive_briefing": 223
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "Medium",
+        "incident_responder": "High",
+        "threat_intel": "Low",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:41:47.045928"
+  },
+  "input_data": {
+    "src_port": 8080,
+    "dst_port": 64748,
+    "packet_size": 451,
+    "duration_ms": 210,
+    "protocol": "UDP"
+  },
+  "timestamp": "2025-07-02T12:41:47.045928"
+}

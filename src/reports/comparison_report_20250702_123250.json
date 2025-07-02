@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:32:24.601393",
+        "response_time": 6.884030818939209,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 2191,
+          "packet_size": 745,
+          "duration_ms": 476,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.027415446269170363,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**Technical Assessment:**\n\nThe anomaly in question exhibits a UDP packet with a source port of 8080 and a destination port of 2191, which is an unusual combination. Port 8080 is commonly associated with HTTP proxy servers or alternative HTTP ports, while port 2191 is not a well-known port for any standard protocol.\n\nThe packet size of 745 bytes is relatively large for a UDP packet, which may indicate that the packet contains payload data. The connection duration of 476 ms suggests that this is a single packet transmission, rather than an ongoing conversation.\n\nThe Isolation Forest detection algorithm has classified this anomaly as a PROTOCOL_PORT_MISMATCH, indicating that the protocol (UDP) and port combination (2191) do not conform to expected patterns.\n\n**IOC Identification:**\n\nBased on this analysis, the following IOCs can be identified:\n\n* Source port: 8080\n* Destination port: 2191\n* Protocol: UDP\n* Packet size: 745 bytes\n* Connection duration: 476 ms\n\n**Attack Vector:**\n\nGiven the unusual port combination and large packet size, it is possible that this anomaly is related to a command and control (C2) communication or data exfiltration attempt. The use of UDP as the protocol may be an attempt to evade detection by traditional security controls.\n\n**Severity Rating:**\n\nI would rate this anomaly as Medium severity. While the anomaly is unusual and warrants further investigation, it is not immediately clear whether this is a malicious activity or a benign misconfiguration. Further analysis is required to determine the intent behind this communication.\n\n**Mitigation Steps:**\n\n1. Block incoming UDP traffic on port 2191 at the network perimeter to prevent potential C2 communication or data exfiltration.\n2. Implement protocol-specific filtering to restrict UDP traffic to only necessary ports and protocols.\n3. Configure security information and event management (SIEM) systems to monitor for similar anomalies and alert on suspicious activity.\n4. Perform a thorough network scan to identify any hosts communicating with the destination IP address and port.\n\n**Forensic Notes:**\n\n1. Capture and analyze the packet payload to determine the contents and potential malicious intent.\n2. Investigate the source IP address and host to determine whether it is a legitimate or compromised system.\n3. Review system logs and network captures to identify any other suspicious activity related to this anomaly!",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:32:29.569337",
+        "response_time": 4.9671595096588135,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 2191,
+          "packet_size": 745,
+          "duration_ms": 476,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.027415446269170363,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to business operations and data integrity, potentially leading to reputational damage and financial losses.\n\n**DATA AT RISK:** Sensitive data transmitted over the network, including but not limited to:\n\n* Confidential business communications\n* User authentication credentials\n* Proprietary data\n\n**LIKELIHOOD:** Moderate (0.4) - The anomaly data indicates a potential protocol port mismatch, which could be indicative of a malicious actor attempting to exploit a vulnerability or misconfiguration.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (depending on the scope and severity of the incident)\n\n**REGULATORY CONCERNS:** Compliance implications:\n\n* Potential violation of data protection regulations (e.g., GDPR, HIPAA)\n* Failure to maintain adequate security measures to protect sensitive data\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Traffic Analysis:** Conduct a thorough analysis of network traffic to determine the source and intent of the anomaly.\n2. **Port Configuration Review:** Review port configurations to ensure they are properly secured and aligned with organizational policies.\n3. **Incident Response:** Activate incident response protocols to contain and mitigate potential damage.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Segmentation:** Implement network segmentation to reduce the attack surface and limit lateral movement.\n2. **Protocol Hardening:** Harden protocols to prevent exploitation of vulnerabilities and misconfigurations.\n3. **Regular Security Audits:** Conduct regular security audits to identify and address potential vulnerabilities and misconfigurations.\n4. **Employee Education:** Educate employees on security best practices to prevent social engineering attacks.\n\n**RECOMMENDATIONS:**\n\n* Prioritize immediate actions to contain and mitigate potential damage.\n* Allocate resources to implement long-term strategic security improvements.\n* Consider engaging a third-party security expert to conduct a comprehensive security assessment and provide recommendations for improvement.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:32:35.805864",
+        "response_time": 6.2360289096832275,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 2191,
+          "packet_size": 745,
+          "duration_ms": 476,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.027415446269170363,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\nIsolate the affected network segment(s) immediately to prevent potential lateral movement. Specifically:\n\n* Block traffic on port 8080 and 2191 at the network perimeter (firewall) to prevent further communication with the suspected malicious entity.\n* Isolate the affected hosts/subnets from the rest of the network to prevent potential spread of the threat.\n\n**2. EVIDENCE PRESERVATION:**\n\nSecure the following logs and data to facilitate investigation:\n\n* Network logs: Capture and preserve logs from firewalls, IDS/IPS, and routers related to the suspicious traffic.\n* System logs: Collect logs from affected hosts, including system, application, and security event logs.\n* NetFlow/IPFIX data: Preserve network traffic flow data to aid in traffic analysis.\n* Memory dumps: Consider capturing memory dumps from affected hosts to analyze potential malware or malicious activity.\n\n**3. INVESTIGATION PRIORITIES:**\n\nFocus on the following areas first:\n\n* Analyze network traffic captures to understand the communication pattern and potential data exfiltration.\n* Investigate system logs to identify potential system compromise, malware, or unauthorized access.\n* Review firewall and IDS/IPS logs to determine the scope of the attack and identify potential entry points.\n\n**4. TEAM COORDINATION:**\n\nNotify the following teams and stakeholders:\n\n* Network Operations: Inform them of the isolation and containment measures.\n* System Administrators: Alert them to the potential system compromise and request their assistance in log collection and system analysis.\n* Management: Keep them informed of the incident and response efforts.\n\n**5. TIMELINE:**\n\nAim to complete the initial containment and evidence preservation within the next 60 minutes. Allocate the next 2-4 hours for initial investigation and analysis.\n\n**6. ESCALATION TRIGGERS:**\n\nEscalate the incident further if:\n\n* The attack is confirmed to be a sophisticated, targeted attack (e.g., APT).\n* Sensitive data is suspected to have been exfiltrated.\n* The incident response team requires additional resources or expertise.\n* The incident is deemed to have a significant impact on business operations or reputation.\n\nRemember to maintain clear communication, and regularly update the team and stakeholders on the incident response progress.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:32:46.577894",
+        "response_time": 10.772030591964722,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 2191,
+          "packet_size": 745,
+          "duration_ms": 476,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.027415446269170363,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a UDP packet with a source port of 8080, destination port of 2191, size of 745B, and duration of 476ms, has been analyzed in the context of the current threat landscape and known attack campaigns.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** The protocol-port mismatch pattern is consistent with the tactics, techniques, and procedures (TTPs) employed by the threat actor group, **APT41**. APT41 is known to utilize unconventional port combinations to evade detection and maintain persistence on compromised networks. (Confidence: 0.8)\n* **Recent Threat Campaigns:** The observed anomaly bears resemblance to the \"Operation Soft Cell\" campaign, which targeted telecommunications companies in the Asia-Pacific region between 2019 and 2020. Although the campaign primarily utilized TCP-based protocols, the use of UDP and unusual port combinations is a common adaptation by APT41. (Confidence: 0.6)\n* **Historical Precedent:** Similar protocol-port mismatch patterns have been observed in historical attacks attributed to APT41, including the \"Operation Double Tap\" campaign in 2018. (Confidence: 0.7)\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** APT41 has been observed to be highly active in recent months, with a focus on targeting the telecommunications and technology sectors. (Confidence: 0.9)\n* **Recent Vulnerability Exploitation Trends:** There has been an increase in exploitation of vulnerabilities in network devices and IoT systems, which could be related to the observed anomaly. (Confidence: 0.8)\n* **Industry-Specific Targeting Patterns:** The telecommunications sector has been a primary target for APT41 in recent years, which aligns with the observed anomaly. (Confidence: 0.8)\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** The observed anomaly is likely related to the \"Command and Control\" phase of the cyber kill chain, where the attacker is attempting to establish communication with the compromised system. (Confidence: 0.8)\n* **Likely Next Steps:** If this is a malicious activity, the attacker may attempt to exfiltrate data, deploy additional malware, or move laterally within the network. (Confidence: 0.7)\n* **Associated Infrastructure Patterns:** The use of UDP and unusual port combinations may indicate the presence of a command and control (C2) server, which could be hosted on a compromised system or a bulletproof hosting service. (Confidence: 0.6)\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT41 (Confidence: 0.8)\n* **Campaign Similarities:** Operation Soft Cell, Operation Double Tap (Confidence: 0.6)\n* **Confidence Level in Attribution:** 0.75\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** APT41 is likely to continue targeting the telecommunications and technology sectors, with a focus on exploiting vulnerabilities in network devices and IoT systems. (Confidence: 0.8)\n* **Recommended Threat Hunting Activities:** Monitor for unusual protocol-port combinations, especially in the telecommunications sector. Implement network traffic analysis and anomaly detection systems to identify potential C2 communications. (Confidence: 0.9)\n* **Intelligence Collection Priorities:** Gather information on APT41's C2 infrastructure, including IP addresses, domains, and protocols used. Monitor for new vulnerability exploits and IoT-related attacks. (Confidence: 0.8)\n\n**CONFIDENCE RATINGS**\n\n* Threat landscape context: 0.75\n* Geopolitical context: 0.82\n* Attack chain analysis: 0.78\n* Threat attribution: 0.75\n* Strategic implications: 0.83\n\n**OVERALL CONFIDENCE:** 0.79",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:32:50.186219",
+        "response_time": 3.6083250045776367,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 2191,
+          "packet_size": 745,
+          "duration_ms": 476,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.027415446269170363,
+        "anomaly_type": "PROTOCOL_PORT_MISMATCH",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe've detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential we investigate and respond promptly to prevent any potential disruption to our operations or data breaches.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, as a potential breach could lead to intellectual property theft, reputational damage, or regulatory fines. We estimate a potential budget impact of $50,000 to $100,000 for incident response and remediation efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage our incident response team to conduct a thorough investigation and containment efforts.\n2. Allocate additional resources (up to $50,000) for potential security consultant services to assist with the investigation.\n\n**RESOURCE REQUIREMENTS**\nTo respond effectively, we need:\n\n1. Incident response team activation\n2. Potential security consultant services (budget: up to $50,000)\n3. IT team support for network and system analysis\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, as it may have potential reputational and financial implications.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a detailed incident report and update within 72 hours, including the results of our investigation, containment efforts, and recommended remediation steps.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 6.884030818939209,
+        "risk_assessor": 4.9671595096588135,
+        "incident_responder": 6.2360289096832275,
+        "threat_intel": 10.772030591964722,
+        "executive_briefing": 3.6083250045776367
+      },
+      "response_lengths": {
+        "technical_expert": 371,
+        "risk_assessor": 271,
+        "incident_responder": 336,
+        "threat_intel": 500,
+        "executive_briefing": 198
+      },
+      "severity_assessments": {
+        "technical_expert": "Medium",
+        "risk_assessor": "Medium",
+        "incident_responder": "Low",
+        "threat_intel": "High",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:32:50.186219"
+  },
+  "input_data": {
+    "src_port": 8080,
+    "dst_port": 2191,
+    "packet_size": 745,
+    "duration_ms": 476,
+    "protocol": "UDP"
+  },
+  "timestamp": "2025-07-02T12:32:50.186219"
+}

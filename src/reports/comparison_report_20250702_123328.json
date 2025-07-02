@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:32:58.774251",
+        "response_time": 8.571702241897583,
+        "data": {
+          "src_port": 6666,
+          "dst_port": 64204,
+          "packet_size": 1244,
+          "duration_ms": 90,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.041005940050362066,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**Technical Assessment:**\n\nThe provided network anomaly characteristics and metrics suggest a suspicious traffic pattern. Here's a detailed technical analysis:\n\n* **Source Port 6666:** This port is commonly associated with IRC (Internet Relay Chat) services, which is unusual for a source port. Typically, IRC services listen on this port, but it's not typical for a client to initiate a connection from this port. This could indicate a potential attempt to masquerade as an IRC server or exploit a vulnerability in an IRC client.\n* **Destination Port 64204:** This is a high-range, ephemeral port, which is often used for temporary or dynamic port assignments. It's unusual to see a connection established to such a high port, especially with a specific packet size and duration.\n* **Packet Size 1244 bytes:** This packet size is larger than typical TCP packets, which usually range from 500-1500 bytes. The specific size could be an attempt to evade detection or exploit a vulnerability in a network device or application.\n* **Connection Duration 90 ms:** This connection duration is relatively short, which might indicate a reconnaissance or probing attempt rather than a legitimate data transfer.\n\nThe Isolation Forest detection algorithm has assigned a negative ML Anomaly Score, indicating a high degree of anomaly. The classification of SUSPICIOUS_SRC_PORT further supports the notion that the source port is the primary contributor to the anomaly.\n\n**IOC Identification:**\n\nBased on the analysis, the following IOCs can be identified:\n\n* Source Port: 6666\n* Destination Port: 64204\n* Packet Size: 1244 bytes\n* Connection Duration: 90 ms\n* Protocol: TCP\n\n**Attack Vector:**\n\nGiven the unusual source port and packet size, it's possible that this traffic is related to a reconnaissance or exploitation attempt. The most likely attack methodology could be:\n\n1. **Port scanning or service discovery:** The attacker might be attempting to identify open ports or services on the destination host, using the unusual source port to evade detection.\n2. **Exploit attempt:** The packet size and duration could be indicative of an exploit attempt, potentially targeting a vulnerability in an IRC client or a network device.\n\n**Severity Rating:**\n\nI would rate this anomaly as **Medium**, as it doesn't exhibit overtly malicious characteristics, but it does demonstrate unusual behavior that warrants further investigation.\n\n**Mitigation Steps:**\n\nTo mitigate potential threats, I recommend the following technical countermeasures:\n\n1. **Block traffic from source port 6666:** Implement a firewall rule to block incoming traffic from source port 6666 to prevent potential exploitation attempts.\n2. **Monitor IRC-related traffic:** Closely monitor IRC-related traffic and implement additional logging and alerting for suspicious activity.\n3. **Network device and application updates:** Ensure all network devices and applications are up-to-date with the latest security patches to prevent exploitation of known vulnerabilities.\n\n**Forensic Notes:**\n\nFor further investigation, I recommend:\n\n1. **Capture and analyze network traffic:** Capture and analyze network traffic related to this anomaly to identify potential command and control (C2) communication or data exfiltration.\n2. **Host-based analysis:** Perform host-based analysis on the destination host to identify potential indicators of compromise, such as suspicious processes, registry modifications, or file system changes.\n3. **Log analysis:** Analyze system logs and network device logs to identify potential correlations with other suspicious activity.\n\nBy following these recommendations, SOC analysts can further investigate this anomaly and take appropriate measures to prevent potential security breaches.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:33:04.892897",
+        "response_time": 6.118149995803833,
+        "data": {
+          "src_port": 6666,
+          "dst_port": 64204,
+          "packet_size": 1244,
+          "duration_ms": 90,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.041005940050362066,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential unauthorized access to sensitive data, disruption of business operations, and reputational damage.\n\n**DATA AT RISK:** Confidential business data, customer information, and intellectual property.\n\n**LIKELIHOOD:** Moderate (60%) - The suspicious source port and unusual data volume indicate a potential threat, but the short session length and low risk score suggest a lower likelihood of success.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (includes incident response, data recovery, and potential regulatory fines).\n\n**REGULATORY CONCERNS:** Compliance implications: Potential violation of data protection regulations, such as GDPR, HIPAA, or PCI-DSS, depending on the type of data compromised.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Isolation**: Immediately isolate the affected network segment to prevent further unauthorized access.\n2. **Traffic Analysis**: Conduct a thorough analysis of network traffic to identify the source and scope of the anomaly.\n3. **Incident Response**: Activate incident response protocols to contain and mitigate the potential threat.\n\n**LONG-TERM STRATEGY:**\n\n1. **Enhanced Network Monitoring**: Implement advanced network monitoring tools to detect and respond to similar anomalies in real-time.\n2. **Source Port Filtering**: Configure firewalls to block traffic from suspicious source ports.\n3. **Regular Security Audits**: Conduct regular security audits to identify and remediate vulnerabilities.\n4. **Employee Awareness**: Educate employees on the importance of security best practices and the risks associated with suspicious network activity.\n\n**RECOMMENDATIONS:**\n\n* Prioritize the immediate actions to contain and mitigate the potential threat.\n* Allocate resources to implement the long-term strategy to enhance network security and prevent similar incidents.\n* Consider engaging a third-party security expert to conduct a comprehensive security assessment and provide recommendations for improvement.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:33:13.700184",
+        "response_time": 8.807245254516602,
+        "data": {
+          "src_port": 6666,
+          "dst_port": 64204,
+          "packet_size": 1244,
+          "duration_ms": 90,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.041005940050362066,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\nIsolate the affected network segment(s) immediately to prevent potential lateral movement. Block traffic on port 6666 and 64204 at the network perimeter to prevent further communication with the suspected malicious actor. Implement temporary firewall rules to restrict access to these ports.\n\n**2. EVIDENCE PRESERVATION:**\nSecure the following logs and data to aid in the investigation:\n\n* Network logs: Capture packet captures (PCAPs) from the affected network segment(s) for the last 30 minutes.\n* System logs: Collect system logs from devices on the affected network segment(s), including authentication, authorization, and access control logs.\n* NetFlow/IPFIX data: Gather network flow data to understand traffic patterns and identify potential command and control (C2) communication.\n* Endpoint logs: Collect logs from endpoint security solutions, such as antivirus and host-based intrusion detection systems.\n\n**3. INVESTIGATION PRIORITIES:**\nFocus on the following areas first:\n\n* Identify the source of the suspicious traffic: Determine the IP address, hostname, and user account associated with the traffic.\n* Analyze network communication patterns: Investigate the communication between the affected devices and the suspected malicious actor.\n* Check for signs of lateral movement: Look for evidence of malware, unauthorized access, or data exfiltration.\n\n**4. TEAM COORDINATION:**\nNotify the following teams and individuals:\n\n* Network Operations Center (NOC) team: Inform them of the temporary firewall rules and request their assistance in monitoring network traffic.\n* Endpoint Security team: Alert them to the potential incident and request their support in analyzing endpoint logs.\n* Incident Response team members: Ensure all team members are aware of the incident and their roles in the response effort.\n\n**5. TIMELINE:**\nOur initial response timeframe is 60 minutes. We aim to:\n\n* Contain the incident within the first 15 minutes.\n* Gather initial evidence and conduct preliminary analysis within 30 minutes.\n* Provide an initial incident report and recommendations within 60 minutes.\n\n**6. ESCALATION TRIGGERS:**\nEscalate the incident further if:\n\n* The incident is confirmed to be a security breach.\n* Lateral movement or data exfiltration is detected.\n* The incident is deemed to have a high impact on business operations or sensitive data.\n* The incident response team requires additional resources or expertise.\n\nLet's move quickly and efficiently to contain and investigate this potential security incident. Keep me updated on your progress, and let's work together to mitigate any potential damage.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:33:22.685781",
+        "response_time": 8.985092163085938,
+        "data": {
+          "src_port": 6666,
+          "dst_port": 64204,
+          "packet_size": 1244,
+          "duration_ms": 90,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.041005940050362066,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a suspicious source port 6666, is indicative of potential malicious activity. This port is commonly associated with IRC (Internet Relay Chat) protocol, which is often used by threat actors for command and control (C2) communications.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **Known TTPs:** This pattern matches the TTPs of several threat actor groups, including APT33 (Elfin) and APT34 (OilRig), which have been known to utilize IRC-based C2 channels.\n* **Recent threat campaigns:** There is a correlation with recent campaigns involving the exploitation of vulnerabilities in VPN solutions, which may be related to the observed anomaly.\n* **Historical precedent:** Similar patterns have been observed in previous attacks, including the 2017 NotPetya campaign, which utilized IRC-based C2 communications.\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current threat actor activity levels:** Elevated activity levels have been observed from APT groups originating from the Middle East and Asia-Pacific regions.\n* **Recent vulnerability exploitation trends:** There has been an increase in exploitation of VPN vulnerabilities, particularly in the healthcare and finance industries.\n* **Industry-specific targeting patterns:** The observed anomaly may be related to targeted attacks against the finance industry, which has seen an increase in VPN-related attacks in recent months.\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber kill chain:** This anomaly likely represents the Command and Control (C2) phase of the attack chain, suggesting that the attacker has already gained initial access and is attempting to establish a foothold in the network.\n* **Likely next steps:** The attacker may attempt to escalate privileges, move laterally within the network, and exfiltrate sensitive data.\n* **Associated infrastructure patterns:** The use of IRC-based C2 channels may indicate the presence of additional infrastructure, such as proxy servers or redirectors, to facilitate communication between the attacker and compromised hosts.\n\n**THREAT ATTRIBUTION**\n\n* **Possible threat actor groups:** APT33 (Elfin) or APT34 (OilRig) are possible candidates, given the similarity in TTPs and recent campaign activity.\n* **Campaign similarities:** The observed anomaly shares similarities with recent campaigns involving VPN exploitation and IRC-based C2 communications.\n* **Confidence level in attribution:** 70% (based on the correlation with known TTPs and recent campaign activity)\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term threat trajectory:** The observed anomaly suggests that threat actors are continuing to evolve their TTPs, incorporating new techniques and tools to evade detection.\n* **Recommended threat hunting activities:** Monitor for additional IRC-based C2 communications, and investigate potential VPN-related vulnerabilities in the network.\n* **Intelligence collection priorities:** Focus on gathering additional information on APT33 and APT34, including their TTPs, infrastructure, and campaign activity.\n\n**CONFIDENCE RATINGS**\n\n* Anomaly classification: 80% (based on the suspicious source port and correlation with known TTPs)\n* Threat attribution: 70% (based on the similarity in TTPs and recent campaign activity)\n* Strategic implications: 90% (based on the observed anomaly and correlation with recent threat landscape trends)",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:33:28.215375",
+        "response_time": 5.529470920562744,
+        "data": {
+          "src_port": 6666,
+          "dst_port": 64204,
+          "packet_size": 1244,
+          "duration_ms": 90,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.041005940050362066,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe have detected suspicious network activity that may indicate a potential security threat. While the severity is currently low, it's essential we investigate and respond promptly to prevent potential data breaches or system compromise. This incident may impact our ability to operate efficiently and maintain customer trust.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, as a potential breach could lead to costs associated with incident response, data recovery, and potential regulatory fines. We estimate a budget of $50,000 to cover initial investigation and response efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage a third-party incident response team to assist with investigation and containment.\n2. Allocate additional resources from the IT budget to support the response effort.\n\n**RESOURCE REQUIREMENTS**\nWe need to mobilize our internal security team and potentially engage external experts to investigate and respond to this incident. We will require an additional $20,000 to cover external expert fees.\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, as it may impact our overall risk posture and require strategic guidance.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a detailed update on the incident response progress in 48 hours, including any additional resource requirements or budget implications.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 8.571702241897583,
+        "risk_assessor": 6.118149995803833,
+        "incident_responder": 8.807245254516602,
+        "threat_intel": 8.985092163085938,
+        "executive_briefing": 5.529470920562744
+      },
+      "response_lengths": {
+        "technical_expert": 544,
+        "risk_assessor": 267,
+        "incident_responder": 390,
+        "threat_intel": 465,
+        "executive_briefing": 208
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "Medium",
+        "incident_responder": "High",
+        "threat_intel": "Unspecified",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:33:28.215864"
+  },
+  "input_data": {
+    "src_port": 6666,
+    "dst_port": 64204,
+    "packet_size": 1244,
+    "duration_ms": 90,
+    "protocol": "TCP"
+  },
+  "timestamp": "2025-07-02T12:33:28.215864"
+}

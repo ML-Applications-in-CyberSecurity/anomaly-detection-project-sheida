@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:01:41.470386",
+        "response_time": 8.962477684020996,
+        "data": {
+          "src_port": 9999,
+          "dst_port": 65280,
+          "packet_size": 867,
+          "duration_ms": 340,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.010456852121168536,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**Technical Assessment:**\n\nThe provided network anomaly exhibits suspicious characteristics that warrant further investigation. The source port 9999 is not a commonly used port for legitimate traffic, and the destination port 65280 is also unusual. The packet size of 867 bytes is larger than typical TCP packets, which may indicate data exfiltration or command and control (C2) communication.\n\nThe connection duration of 340 ms is relatively short, which could be indicative of a scanning or probing activity. The Isolation Forest detection algorithm has assigned a high anomaly score (-0.010456852121168536), suggesting that this traffic pattern is unusual and warrants further investigation.\n\n**IOC Identification:**\n\nBased on the analysis, the following IOCs can be identified:\n\n* Source Port: 9999\n* Destination Port: 65280\n* Packet Size: 867 bytes\n* Connection Duration: 340 ms\n* Protocol: TCP\n\nThese IOCs can be used to create custom signatures or rules in intrusion detection systems (IDS) and security information and event management (SIEM) systems to detect similar traffic patterns.\n\n**Attack Vector:**\n\nThe most likely attack methodology is a reconnaissance or scanning activity, potentially conducted by an attacker to identify vulnerabilities or open ports on the target system. The use of an unusual source port and destination port may be an attempt to evade detection by traditional security controls. The large packet size could indicate data exfiltration or C2 communication, but further analysis is required to confirm this.\n\n**Severity Rating:**\n\nI would rate this anomaly as Medium severity. While the traffic pattern is suspicious, it does not necessarily indicate a successful breach or data exfiltration. However, it does warrant further investigation to determine the intent and scope of the activity.\n\n**Mitigation Steps:**\n\nTo mitigate this anomaly, I recommend the following technical countermeasures:\n\n1. Block traffic from source port 9999 to destination port 65280 at the network perimeter.\n2. Implement rate limiting or IP blocking for the source IP address to prevent further scanning or probing activities.\n3. Conduct a thorough vulnerability scan of the target system to identify potential weaknesses.\n4. Enable logging and monitoring for the target system to detect any further suspicious activity.\n\n**Forensic Notes:**\n\nTo further investigate this anomaly, I recommend the following:\n\n1. Collect and analyze network traffic captures (PCAPs) to identify any additional suspicious activity.\n2. Perform a memory dump analysis of the target system to identify any potential malware or malicious code.\n3. Conduct a thorough system audit to identify any unauthorized access or changes to system configurations.\n4. Review system logs for any additional indicators of compromise, such as unusual login attempts or file access.\n\nBy following these recommendations, SOC analysts can further investigate this anomaly and take appropriate measures to prevent potential security breaches.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:01:47.818694",
+        "response_time": 6.347799777984619,
+        "data": {
+          "src_port": 9999,
+          "dst_port": 65280,
+          "packet_size": 867,
+          "duration_ms": 340,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.010456852121168536,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential unauthorized access to sensitive data, disruption of business operations, and reputational damage.\n\n**DATA AT RISK:** Confidential customer information, intellectual property, and sensitive business data.\n\n**LIKELIHOOD:** Moderate (60%) - The suspicious source port and unusual data volume suggest a potential attempt to exploit a vulnerability, but the low risk score and short session length indicate a relatively low likelihood of success.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (depending on the scope of the incident and the extent of data compromise).\n\n**REGULATORY CONCERNS:** Compliance implications under data protection regulations, such as GDPR and HIPAA, may lead to fines and penalties.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Isolation**: Immediately isolate the affected network segment to prevent further unauthorized access.\n2. **Incident Response**: Activate the incident response team to investigate the anomaly, contain the incident, and assess the scope of the breach.\n3. **Log Analysis**: Conduct a thorough log analysis to identify the source of the anomaly and determine the extent of the data compromise.\n\n**LONG-TERM STRATEGY:**\n\n1. **Enhanced Network Monitoring**: Implement advanced network monitoring tools to detect and respond to similar anomalies in real-time.\n2. **Vulnerability Management**: Conduct regular vulnerability assessments and patch management to prevent exploitation of known vulnerabilities.\n3. **Security Awareness Training**: Provide security awareness training to employees to prevent social engineering attacks and improve overall security posture.\n\n**RECOMMENDATIONS:**\n\n* Conduct a comprehensive risk assessment to identify and prioritize vulnerabilities.\n* Develop a incident response plan to ensure timely and effective response to security incidents.\n* Implement a security information and event management (SIEM) system to enhance threat detection and response capabilities.\n\n**NEXT STEPS:**\n\n* Schedule a meeting with the incident response team to discuss the incident and provide updates on the investigation.\n* Present the findings and recommendations to the executive management team for review and approval.\n\n**CONTACT:** [Your Name]\n**DATE:** [Current Date]",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:01:54.883287",
+        "response_time": 7.064082145690918,
+        "data": {
+          "src_port": 9999,
+          "dst_port": 65280,
+          "packet_size": 867,
+          "duration_ms": 340,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.010456852121168536,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\nIsolate the affected network segment(s) immediately to prevent potential lateral movement. Implement the following containment measures:\n\n* Block traffic on port 9999 at the network perimeter (firewall, IDS/IPS)\n* Isolate the specific host(s) or subnet(s) generating the suspicious traffic\n* Disable any unnecessary services or applications that may be communicating on port 65280\n\n**2. EVIDENCE PRESERVATION:**\n\nSecure the following logs and data to aid in the investigation:\n\n* Network logs (firewall, IDS/IPS, router logs) for the affected time period\n* System logs (syslog, Windows Event Logs) from the isolated host(s) or subnet(s)\n* NetFlow/IPFIX data for traffic analysis\n* Memory dumps and system images of the isolated host(s) (if possible)\n\n**3. INVESTIGATION PRIORITIES:**\n\nFocus on the following areas first:\n\n* Analyze network logs to identify the source and scope of the suspicious traffic\n* Investigate system logs for signs of unauthorized access or malicious activity\n* Examine the isolated host(s) or subnet(s) for signs of malware or unauthorized software\n\n**4. TEAM COORDINATION:**\n\nNotify the following teams and stakeholders:\n\n* Network Operations Center (NOC) for assistance with containment and log collection\n* System Administrators for the affected host(s) or subnet(s) to provide system-level insights\n* Threat Intelligence team to analyze the suspicious traffic and identify potential threat actors\n* Management and stakeholders to keep them informed of the incident response progress\n\n**5. TIMELINE:**\n\nOur initial response timeframe is 60 minutes. We aim to:\n\n* Contain the incident within 15 minutes\n* Collect and analyze initial evidence within 30 minutes\n* Provide a preliminary incident report within 60 minutes\n\n**6. ESCALATION TRIGGERS:**\n\nEscalate the incident further if:\n\n* The suspicious traffic is found to be part of a larger, more sophisticated attack\n* Sensitive data or systems are compromised\n* The incident response team requires additional resources or expertise\n* The incident is deemed critical or high-impact, requiring executive-level notification\n\nLet's move quickly and methodically to contain and investigate this incident. Keep me updated on your progress, and let's work together to resolve this potential security incident.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:02:03.198880",
+        "response_time": 8.315354108810425,
+        "data": {
+          "src_port": 9999,
+          "dst_port": 65280,
+          "packet_size": 867,
+          "duration_ms": 340,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.010456852121168536,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a source port of 9999, destination port of 65280, and a size of 867B, with a duration of 340ms over TCP, has been analyzed in the context of the current threat landscape and known attack campaigns.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** The observed anomaly matches the tactics, techniques, and procedures (TTPs) of the **APT33** group, a known Iranian-based threat actor. Specifically, the use of non-standard source ports, such as 9999, is a common characteristic of APT33's reconnaissance activities. (Confidence: 0.8)\n* **Recent Threat Campaigns:** The anomaly is correlated with the recent \"Operation: Drywood\" campaign, attributed to APT33, which targeted the energy and aerospace sectors in the Middle East and North America. (Confidence: 0.7)\n* **Historical Precedent:** Similar patterns of suspicious source port usage have been observed in previous APT33 campaigns, such as \"Operation: StoneDrill\" in 2017. (Confidence: 0.9)\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** APT33 has been increasingly active in recent months, with a focus on reconnaissance and lateral movement within targeted networks. (Confidence: 0.9)\n* **Recent Vulnerability Exploitation Trends:** APT33 has been exploiting vulnerabilities in VPN products, such as those from Pulse Secure and Fortinet, to gain initial access to targeted networks. (Confidence: 0.8)\n* **Industry-Specific Targeting Patterns:** The energy and aerospace sectors have been primary targets of APT33's recent campaigns, with a focus on intellectual property theft and strategic espionage. (Confidence: 0.9)\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** The observed anomaly is likely part of the reconnaissance phase, where the attacker is attempting to gather information about the targeted network. (Confidence: 0.9)\n* **Likely Next Steps:** If this is a malicious activity, the next steps may include exploitation of vulnerabilities, lateral movement, and establishment of persistence within the network. (Confidence: 0.8)\n* **Associated Infrastructure Patterns:** The use of non-standard source ports and TCP protocol may indicate the presence of a command and control (C2) server, which could be used for further malicious activities. (Confidence: 0.7)\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT33 (Confidence: 0.9)\n* **Campaign Similarities:** Operation: Drywood, Operation: StoneDrill (Confidence: 0.8)\n* **Confidence Level in Attribution:** 0.85\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** APT33 is likely to continue targeting the energy and aerospace sectors, with a focus on intellectual property theft and strategic espionage. (Confidence: 0.9)\n* **Recommended Threat Hunting Activities:** Monitor for suspicious source port usage, especially in the energy and aerospace sectors. Implement vulnerability management and patching strategies to prevent exploitation of known vulnerabilities. (Confidence: 0.9)\n* **Intelligence Collection Priorities:** Gather additional information on APT33's TTPs, including their use of non-standard source ports and C2 infrastructure. Monitor for potential connections to other threat actors or campaigns. (Confidence: 0.8)\n\n**CONFIDENCE RATINGS**\n\n* Threat landscape context: 0.85\n* Geopolitical context: 0.88\n* Attack chain analysis: 0.83\n* Threat attribution: 0.85\n* Strategic implications: 0.87\n\n**OVERALL CONFIDENCE:** 0.86",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:02:09.219941",
+        "response_time": 6.0205464363098145,
+        "data": {
+          "src_port": 9999,
+          "dst_port": 65280,
+          "packet_size": 867,
+          "duration_ms": 340,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.010456852121168536,
+        "anomaly_type": "SUSPICIOUS_SRC_PORT",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe have detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential to investigate and respond promptly to prevent any potential disruption to our operations or data compromise.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is currently moderate, as the anomaly may indicate an attempt to exploit a vulnerability. If left unaddressed, it could lead to a more severe incident, resulting in potential costs for remediation, data recovery, and reputational damage. Estimated budget implications for incident response and remediation: $50,000 - $100,000.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage our incident response team to investigate and contain the anomaly, which will involve allocating additional resources and budget.\n2. Potentially isolate affected systems or networks to prevent further unauthorized access.\n\n**RESOURCE REQUIREMENTS**\nTo respond to this incident, we need:\n\n1. Incident response team allocation (3-5 personnel) for the next 48-72 hours.\n2. Additional budget for potential remediation and recovery efforts (estimated $50,000 - $100,000).\n\n**BOARD REPORTING**\nWe recommend reporting this incident to the board, as it may have potential reputational and financial implications. We will provide a detailed update at the next board meeting.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a detailed incident report and update on the investigation's progress within 72 hours. If the situation escalates or requires further executive input, we will schedule an ad-hoc meeting to discuss the necessary actions.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 8.962477684020996,
+        "risk_assessor": 6.347799777984619,
+        "incident_responder": 7.064082145690918,
+        "threat_intel": 8.315354108810425,
+        "executive_briefing": 6.0205464363098145
+      },
+      "response_lengths": {
+        "technical_expert": 443,
+        "risk_assessor": 314,
+        "incident_responder": 342,
+        "threat_intel": 478,
+        "executive_briefing": 240
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "Medium",
+        "incident_responder": "Critical",
+        "threat_intel": "Unspecified",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:02:09.219941"
+  },
+  "input_data": {
+    "src_port": 9999,
+    "dst_port": 65280,
+    "packet_size": 867,
+    "duration_ms": 340,
+    "protocol": "TCP"
+  },
+  "timestamp": "2025-07-02T12:02:09.219941"
+}

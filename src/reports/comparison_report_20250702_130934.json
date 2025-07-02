@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T13:09:08.977077",
+        "response_time": 8.542234659194946,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 1886,
+          "packet_size": 554,
+          "duration_ms": 100,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.024227049301086878,
+        "anomaly_type": "BEHAVIORAL_ANOMALY",
+        "llm_response": "**Technical Assessment:**\n\nThe provided network anomaly characteristics and metrics suggest a potential malicious activity. Here's a detailed technical analysis:\n\n* **Source Port 8080**: This port is commonly used for HTTP proxying, but it's unusual to see it as a source port in this context. It might indicate that the attacker is using a compromised system or a proxy server to initiate the connection.\n* **Destination Port 1886**: This port is not commonly associated with any well-known services. It's possible that the attacker is using a custom or proprietary protocol, or attempting to exploit a vulnerability in a specific application.\n* **Packet Size 554 bytes**: The packet size is relatively large, which could indicate that the attacker is sending a significant amount of data, potentially including malware or exploit code.\n* **Connection Duration 100 ms**: The short connection duration suggests that the attacker might be using a \"touch-and-go\" approach, quickly sending data and then disconnecting to avoid detection.\n* **Protocol TCP**: The use of TCP as the transport protocol implies that the attacker is attempting to establish a reliable, connection-oriented communication channel.\n\nThe ML Anomaly Score of -0.024227049301086878 indicates a high degree of anomaly, and the Isolation Forest detection algorithm suggests that the traffic pattern is unusual compared to the normal traffic profile.\n\n**IOC Identification:**\n\nBased on the analysis, the following IOCs can be identified:\n\n* Source port 8080\n* Destination port 1886\n* Packet size 554 bytes\n* Connection duration 100 ms\n* TCP protocol\n\n**Attack Vector:**\n\nGiven the characteristics of the anomaly, the most likely attack methodology is a targeted exploit or malware delivery attempt. The attacker might be using a compromised system or a proxy server to initiate the connection, and the unusual destination port and packet size suggest that the attacker is attempting to exploit a specific vulnerability or deliver a custom malware payload.\n\n**Severity Rating:**\n\nI would rate this anomaly as **High** severity due to the unusual traffic characteristics, the potential for malware delivery, and the short connection duration, which suggests an attempt to evade detection.\n\n**Mitigation Steps:**\n\nTo mitigate this potential threat, I recommend the following technical countermeasures:\n\n* Block traffic from source port 8080 to destination port 1886 at the network perimeter.\n* Implement protocol-based filtering to restrict TCP traffic on non-standard ports.\n* Enable advanced threat protection features, such as sandboxing and behavioral analysis, to detect and block custom malware payloads.\n* Conduct a thorough network scan to identify and isolate any compromised systems or devices.\n\n**Forensic Notes:**\n\nTo further investigate this anomaly, I recommend the following:\n\n* Capture and analyze the packet capture (PCAP) data to extract more information about the payload and the attacker's methodology.\n* Conduct a memory dump analysis of any systems that communicated with the destination IP and port to identify potential malware artifacts.\n* Review system logs and network traffic logs to identify any other suspicious activity related to the attacker's IP address or the compromised system.\n* Perform a vulnerability scan of the network to identify any potential entry points for the attacker.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T13:09:14.421743",
+        "response_time": 5.444666147232056,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 1886,
+          "packet_size": 554,
+          "duration_ms": 100,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.024227049301086878,
+        "anomaly_type": "BEHAVIORAL_ANOMALY",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to business operations, possible data exfiltration, and reputational damage.\n\n**DATA AT RISK:** Sensitive data, including but not limited to, customer information, intellectual property, and confidential business communications.\n\n**LIKELIHOOD:** Moderate (0.4) - The anomaly data suggests a possible behavioral anomaly, which may indicate an attempted attack or unauthorized access.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (depending on the scope and severity of the incident).\n\n**REGULATORY CONCERNS:** Compliance implications may arise from potential data breaches, particularly if sensitive customer information is compromised, which could lead to fines and penalties under regulations such as GDPR, HIPAA, or PCI-DSS.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Isolation**: Immediately isolate the affected network segment to prevent further potential data exfiltration.\n2. **Incident Response**: Activate incident response protocols to investigate the anomaly, identify the root cause, and contain the incident.\n3. **Log Analysis**: Conduct a thorough analysis of network logs to determine the scope and severity of the incident.\n4. **Vulnerability Assessment**: Perform a vulnerability assessment to identify potential weaknesses in the network and systems.\n\n**LONG-TERM STRATEGY:**\n\n1. **Enhanced Network Monitoring**: Implement advanced network monitoring tools to detect and respond to behavioral anomalies in real-time.\n2. **Network Segmentation**: Implement network segmentation to reduce the attack surface and prevent lateral movement in case of a breach.\n3. **Employee Education**: Provide regular security awareness training to employees to prevent social engineering attacks and improve overall security posture.\n4. **Incident Response Plan**: Review and update incident response plans to ensure they are comprehensive, effective, and regularly tested.\n\n**RECOMMENDATIONS:**\n\n* Conduct a comprehensive risk assessment to identify potential vulnerabilities and prioritize remediation efforts.\n* Implement a threat intelligence program to stay informed about emerging threats and trends.\n* Consider engaging a third-party security expert to conduct a thorough security assessment and provide recommendations for improvement.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T13:09:20.564013",
+        "response_time": 6.14188027381897,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 1886,
+          "packet_size": 554,
+          "duration_ms": 100,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.024227049301086878,
+        "anomaly_type": "BEHAVIORAL_ANOMALY",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\nIsolate the affected system(s) immediately by:\n\n* Blocking traffic on port 8080 and 1886 at the network perimeter (firewall rules)\n* Disconnecting the system(s) from the network to prevent further communication with the suspected threat\n* Implementing a temporary access control list (ACL) to restrict access to the affected system(s)\n\n**2. EVIDENCE PRESERVATION:**\n\nSecure the following logs and data:\n\n* Network logs: Capture and preserve logs from the affected system(s), including:\n\t+ NetFlow/IPFIX data\n\t+ Firewall logs\n\t+ IDS/IPS logs\n* System logs: Collect and preserve system logs from the affected system(s), including:\n\t+ System event logs\n\t+ Application logs\n\t+ Security logs\n* Packet captures: Perform a packet capture on the affected system(s) to gather more information about the suspicious traffic\n\n**3. INVESTIGATION PRIORITIES:**\n\nCheck the following first:\n\n* Analyze network logs to identify the source and scope of the suspicious traffic\n* Investigate system logs to determine if the anomaly is related to a specific application or service\n* Review system configuration and patch levels to identify potential vulnerabilities\n\n**4. TEAM COORDINATION:**\n\nNotify the following teams and individuals:\n\n* Network operations team: Inform them of the isolation and containment measures\n* System administrators: Alert them to the affected system(s) and request their assistance in evidence preservation\n* Security analysts: Engage them to assist with log analysis and investigation\n* Incident response team lead: Keep them informed of the incident response progress\n\n**5. TIMELINE:**\n\nOur initial response timeframe is 60 minutes. We aim to:\n\n* Contain the incident within 15 minutes\n* Preserve evidence and initiate investigation within 30 minutes\n* Provide an initial incident report and recommendations within 60 minutes\n\n**6. ESCALATION TRIGGERS:**\n\nEscalate the incident further if:\n\n* The anomaly is confirmed to be a security breach\n* The incident scope expands to multiple systems or networks\n* The incident response team requires additional resources or expertise\n* The incident has potential legal or regulatory implications\n\nLet's move quickly to contain and investigate this incident. Please acknowledge and confirm your tasks.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T13:09:29.297227",
+        "response_time": 8.732890844345093,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 1886,
+          "packet_size": 554,
+          "duration_ms": 100,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.024227049301086878,
+        "anomaly_type": "BEHAVIORAL_ANOMALY",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a TCP connection on port 1886 with a source port of 8080, a size of 554B, and a duration of 100ms, has been analyzed in the context of the current threat landscape and known attack campaigns.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** The observed anomaly matches the tactics, techniques, and procedures (TTPs) of the **APT33** threat actor group, known for their use of TCP port 1886 in command and control (C2) communications. Confidence level: 0.8\n* **Recent Threat Campaigns:** The anomaly is correlated with the **\"Operation: CloudHopper\"** campaign, which targeted cloud service providers and involved the use of TCP port 1886 for C2 communications. Confidence level: 0.7\n* **Historical Precedent:** Similar patterns have been observed in historical attacks attributed to APT33, including the **\"Operation: Shamoon\"** campaign, which targeted organizations in the Middle East. Confidence level: 0.6\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** APT33 has been observed to be highly active in recent months, with a focus on targeting organizations in the energy and financial sectors. Confidence level: 0.9\n* **Recent Vulnerability Exploitation Trends:** There has been an increase in exploitation of vulnerabilities in cloud-based services, which aligns with the tactics employed by APT33. Confidence level: 0.8\n* **Industry-Specific Targeting Patterns:** The energy and financial sectors have been primary targets of APT33, which may indicate a potential interest in these industries. Confidence level: 0.7\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** The observed anomaly is likely related to the **Command and Control (C2)** phase of the cyber kill chain, where the attacker establishes communication with the compromised system. Confidence level: 0.9\n* **Likely Next Steps:** If this is malicious, the attacker may attempt to exfiltrate data or deploy additional malware. Confidence level: 0.8\n* **Associated Infrastructure Patterns:** The use of TCP port 1886 may indicate the presence of a C2 server, which could be hosted on a compromised system or a dedicated infrastructure. Confidence level: 0.7\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT33 is the most likely threat actor group responsible for this activity, given the matching TTPs and historical precedent. Confidence level: 0.8\n* **Campaign Similarities:** The observed anomaly is similar to the \"Operation: CloudHopper\" campaign, which suggests a possible connection to this campaign. Confidence level: 0.7\n* **Confidence Level in Attribution:** 0.75 (APT33)\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** APT33 is likely to continue targeting organizations in the energy and financial sectors, with a focus on cloud-based services. Confidence level: 0.8\n* **Recommended Threat Hunting Activities:** Monitor for suspicious activity on TCP port 1886, and investigate any connections to known APT33 C2 servers. Confidence level: 0.9\n* **Intelligence Collection Priorities:** Gather additional information on APT33's tactics, techniques, and procedures, particularly in relation to cloud-based services. Confidence level: 0.8",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T13:09:34.204319",
+        "response_time": 4.906284332275391,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 1886,
+          "packet_size": 554,
+          "duration_ms": 100,
+          "protocol": "TCP"
+        },
+        "anomaly_score": -0.024227049301086878,
+        "anomaly_type": "BEHAVIORAL_ANOMALY",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe have detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential to investigate and contain the issue to prevent potential data breaches or system compromise. This incident may impact our ability to operate efficiently and maintain customer trust.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, as a potential breach could lead to costs associated with incident response, data recovery, and potential regulatory fines. We estimate a budget of $50,000 to $100,000 to cover investigation, containment, and remediation efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage external incident response experts to assist with investigation and containment.\n2. Allocate additional resources (up to $50,000) to expedite the investigation and remediation process.\n\n**RESOURCE REQUIREMENTS**\nTo effectively respond to this incident, we need:\n\n1. Incident response team: 2-3 security experts to investigate and contain the anomaly.\n2. Budget allocation: Up to $100,000 to cover incident response, external expertise, and potential remediation efforts.\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, as it may impact our ability to operate and maintain customer trust.\n\n**FOLLOW-UP TIMELINE**\nNext update: 2025-07-05 (3 days) - We will provide a detailed incident report, including root cause analysis, containment measures, and remediation plans.\n\nPlease let me know if you have any questions or require further clarification on any of these points.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 8.542234659194946,
+        "risk_assessor": 5.444666147232056,
+        "incident_responder": 6.14188027381897,
+        "threat_intel": 8.732890844345093,
+        "executive_briefing": 4.906284332275391
+      },
+      "response_lengths": {
+        "technical_expert": 507,
+        "risk_assessor": 306,
+        "incident_responder": 341,
+        "threat_intel": 464,
+        "executive_briefing": 235
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "Medium",
+        "incident_responder": "Low",
+        "threat_intel": "High",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T13:09:34.204319"
+  },
+  "input_data": {
+    "src_port": 8080,
+    "dst_port": 1886,
+    "packet_size": 554,
+    "duration_ms": 100,
+    "protocol": "TCP"
+  },
+  "timestamp": "2025-07-02T13:09:34.204319"
+}

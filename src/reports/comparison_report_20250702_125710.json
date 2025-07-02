@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:56:42.803563",
+        "response_time": 8.448288440704346,
+        "data": {
+          "src_port": 443,
+          "dst_port": 7204,
+          "packet_size": 100,
+          "duration_ms": 488,
+          "protocol": "UNKNOWN"
+        },
+        "anomaly_score": -0.00589915415911868,
+        "anomaly_type": "UNKNOWN_PROTOCOL",
+        "llm_response": "**Technical Assessment:**\n\nThe provided network anomaly exhibits unusual characteristics that warrant further investigation. The unknown protocol, unusual destination port, and short connection duration suggest potential malicious activity.\n\n**Protocol Analysis:**\nThe protocol is listed as UNKNOWN, which is unusual, as most network traffic can be classified into known protocols such as TCP, UDP, ICMP, etc. This could indicate:\n\n1. **Custom or proprietary protocol**: The traffic might be using a custom or proprietary protocol, which is not commonly seen in typical network communications.\n2. **Encrypted or obfuscated traffic**: The protocol might be encrypted or obfuscated to evade detection, making it difficult for traditional protocol analyzers to identify.\n3. **Malware or APT activity**: The unknown protocol could be a sign of advanced persistent threat (APT) activity or malware communication, designed to evade detection.\n\n**Destination Port Analysis:**\nThe destination port 7204 is not a commonly used port for standard network services. This could indicate:\n\n1. **Non-standard service or application**: The traffic might be destined for a non-standard service or application, which is not typically seen in normal network communications.\n2. **Malware or backdoor communication**: The unusual port could be used by malware or a backdoor to communicate with its command and control (C2) server.\n\n**Packet Size and Connection Duration Analysis:**\nThe packet size of 100 bytes is relatively small, and the connection duration of 488 ms is brief. This could indicate:\n\n1. **Initial reconnaissance or probing**: The traffic might be part of an initial reconnaissance or probing phase, where the attacker is testing the network defenses.\n2. **Command and control (C2) communication**: The small packet size and brief connection duration could be indicative of C2 communication, where the malware or backdoor is receiving instructions from its C2 server.\n\n**IOC Identification:**\n\n1. **Destination Port**: 7204\n2. **Packet Size**: 100 bytes\n3. **Connection Duration**: 488 ms\n4. **Unknown Protocol**: The specific protocol signature or pattern, if identified, could be used as an IOC.\n\n**Attack Vector:**\nBased on the analysis, the most likely attack methodology is a **command and control (C2) communication** or **initial reconnaissance** phase of a targeted attack. The unknown protocol and unusual destination port suggest that the attacker might be using a custom or proprietary protocol to evade detection.\n\n**Severity Rating:**\nI would rate this anomaly as **High**, due to the unusual protocol, destination port, and packet characteristics, which suggest potential malicious activity. The brief connection duration and small packet size might indica",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:56:48.641709",
+        "response_time": 5.837289571762085,
+        "data": {
+          "src_port": 443,
+          "dst_port": 7204,
+          "packet_size": 100,
+          "duration_ms": 488,
+          "protocol": "UNKNOWN"
+        },
+        "anomaly_score": -0.00589915415911868,
+        "anomaly_type": "UNKNOWN_PROTOCOL",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential unauthorized access to sensitive data, disruption of business operations, and reputational damage.\n\n**DATA AT RISK:** Unclassified data, potentially including user credentials, session information, or other sensitive data transmitted over the network.\n\n**LIKELIHOOD:** Moderate (50%) - The unknown protocol type and low data volume suggest a potentially opportunistic or exploratory attack, but the risk score indicates a relatively low confidence in the threat.\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $10,000 - $50,000 (depending on the scope of data compromised and incident response efforts).\n\n**REGULATORY CONCERNS:** Compliance implications may arise from potential data breaches, particularly if sensitive information is compromised. Relevant regulations include GDPR, HIPAA, and PCI-DSS.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Traffic Analysis**: Perform a deeper analysis of network traffic to understand the purpose and origin of the unknown protocol traffic.\n2. **Protocol Blocking**: Temporarily block traffic on Port 7204 to prevent potential malicious activity.\n3. **Incident Response**: Activate incident response procedures to monitor and contain the potential threat.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Protocol Analysis**: Implement a network protocol analysis tool to identify and classify unknown protocols.\n2. **Enhanced Network Segmentation**: Implement network segmentation to limit lateral movement in case of a breach.\n3. **Regular Security Audits**: Conduct regular security audits to identify and address potential vulnerabilities.\n\n**RECOMMENDATIONS:**\n\n* Allocate resources for network traffic analysis and incident response efforts.\n* Consider investing in a network protocol analysis tool to improve threat detection and response capabilities.\n* Schedule a meeting with the security team to discuss the findings and implement the recommended long-term strategy.\n\nThis structured risk assessment provides a concise and actionable summary of the security risk, enabling executives to make informed decisions about resource allocation and strategic security improvements.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:56:55.836310",
+        "response_time": 7.194601535797119,
+        "data": {
+          "src_port": 443,
+          "dst_port": 7204,
+          "packet_size": 100,
+          "duration_ms": 488,
+          "protocol": "UNKNOWN"
+        },
+        "anomaly_score": -0.00589915415911868,
+        "anomaly_type": "UNKNOWN_PROTOCOL",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\n* Isolate the affected network segment(s) to prevent potential lateral movement.\n* Block traffic on port 7204 at the network perimeter (firewall, IDS/IPS) to prevent further communication with the suspected malicious entity.\n* Identify and isolate the specific host(s) or device(s) generating the suspicious traffic.\n\n**2. EVIDENCE PRESERVATION:**\n\n* Secure the following logs/data:\n\t+ Network logs (firewall, IDS/IPS, router logs) for the affected network segment(s).\n\t+ System logs (syslog, event logs) from the isolated host(s) or device(s).\n\t+ Packet captures (PCAPs) from the affected network segment(s) to analyze the unknown protocol.\n\t+ NetFlow/IPFIX data to understand network traffic patterns.\n\n**3. INVESTIGATION PRIORITIES:**\n\n* Analyze the packet captures (PCAPs) to understand the unknown protocol and potential payload.\n* Investigate the isolated host(s) or device(s) for signs of malware, unauthorized access, or data exfiltration.\n* Review system logs for suspicious activity, such as unusual login attempts or file access.\n* Identify the source of the traffic (internal or external) and potential command and control (C2) servers.\n\n**4. TEAM COORDINATION:**\n\n* Notify the following teams/stakeholders:\n\t+ Network Operations Center (NOC) to assist with network isolation and traffic blocking.\n\t+ Endpoint Security Team to analyze the isolated host(s) or device(s) for signs of malware or unauthorized access.\n\t+ Threat Intelligence Team to research the unknown protocol and potential threat actors.\n\t+ Management/Executive Team to keep them informed of the incident response progress.\n\n**5. TIMELINE:**\n\n* Initial containment and evidence preservation: 30 minutes\n* Preliminary investigation and analysis: 2 hours\n* Detailed investigation and threat hunting: 4-6 hours\n* Incident resolution and remediation: dependent on the scope and complexity of the incident\n\n**6. ESCALATION TRIGGERS:**\n\n* If the incident is confirmed to be a security breach, escalate to the Incident Response Team Lead and Management/Executive Team.\n* If the incident is suspected to involve sensitive data or high-impact systems, escalate to the Incident Response Team Lead and Management/Executive Team.\n* If the incident response team requires additional resources or expertise, escalate to the Incident Response Team Lead and Management/Executive Team.\n\nRemember to continuously monitor the situation, update the incident response plan as needed, and maintain clear communication among the team and stakeholders.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:57:05.538690",
+        "response_time": 9.70237922668457,
+        "data": {
+          "src_port": 443,
+          "dst_port": 7204,
+          "packet_size": 100,
+          "duration_ms": 488,
+          "protocol": "UNKNOWN"
+        },
+        "anomaly_score": -0.00589915415911868,
+        "anomaly_type": "UNKNOWN_PROTOCOL",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a source port of 443, destination port of 7204, and an unknown protocol, has been analyzed in the context of the current threat landscape and known attack campaigns.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Correlation:** The use of an unknown protocol and a non-standard destination port (7204) is reminiscent of tactics employed by advanced threat actors, such as APT33 and APT34, to evade detection. These groups have been known to utilize custom protocols and non-standard ports to communicate with command and control (C2) servers. **Confidence: 0.7**\n* **Recent Threat Campaigns:** The observed anomaly bears some resemblance to the \"Operation Ghost\" campaign, attributed to APT33, which involved the use of custom protocols and non-standard ports to exfiltrate data from compromised networks. **Confidence: 0.5**\n* **Historical Precedent:** There have been instances of unknown protocols being used in the past, such as in the \"Stuxnet\" worm, which utilized a custom protocol to communicate with its C2 servers. **Confidence: 0.4**\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** APT33 and APT34 have been relatively quiet in recent months, but there has been an increase in activity from other Iranian-backed threat actors, such as APT39. **Confidence: 0.6**\n* **Recent Vulnerability Exploitation Trends:** There has been a surge in exploitation of vulnerabilities in VPN products, such as Pulse Secure and Fortinet, which could be related to the observed anomaly. **Confidence: 0.5**\n* **Industry-Specific Targeting Patterns:** The observed anomaly does not appear to be targeting a specific industry, but rather may be a general reconnaissance or exploitation attempt. **Confidence: 0.3**\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** The observed anomaly likely falls within the \"Command and Control\" phase of the cyber kill chain, where the attacker is attempting to establish communication with the compromised system. **Confidence: 0.8**\n* **Likely Next Steps:** If this is a malicious activity, the next steps would likely involve data exfiltration or lateral movement within the compromised network. **Confidence: 0.6**\n* **Associated Infrastructure Patterns:** The use of non-standard ports and unknown protocols may indicate the presence of a custom-built C2 infrastructure, which could be linked to other malicious activities. **Confidence: 0.5**\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT33, APT34, or other Iranian-backed threat actors. **Confidence: 0.6**\n* **Campaign Similarities:** The observed anomaly bears some resemblance to the \"Operation Ghost\" campaign, but further analysis is required to confirm attribution. **Confidence: 0.5**\n* **Confidence Level in Attribution:** 0.5 (medium confidence)\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** The observed anomaly may indicate a shift towards more sophisticated and evasive tactics by threat actors, highlighting the need for continued investment in threat hunting and detection capabilities. **Confidence: 0.7**\n* **Recommended Threat Hunting Activities:** Focus on detecting and analyzing unknown protocols and non-standard port usage, as well as monitoring for signs of lateral movement and data exfiltration. **Confidence: 0.8**\n* **Intelligence Collection Priorities:** Prioritize collection of intelligence on Iranian-backed threat actors, particularly APT33 and APT34, and monitor for signs of increased activity. **Confidence: 0.6**\n\n**CONFIDENCE RATINGS**\n\n* Overall confidence in the analysis: 0.6 (medium confidence)\n* Confidence in threat attribution: 0.5 (medium confidence)\n* Confidence in recommended threat hunting activities: 0.8 (high confidence)",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:57:10.623649",
+        "response_time": 5.084361791610718,
+        "data": {
+          "src_port": 443,
+          "dst_port": 7204,
+          "packet_size": 100,
+          "duration_ms": 488,
+          "protocol": "UNKNOWN"
+        },
+        "anomaly_score": -0.00589915415911868,
+        "anomaly_type": "UNKNOWN_PROTOCOL",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe have detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential we investigate and respond promptly to prevent any potential disruption to our operations or data breach.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is currently unknown, but a thorough investigation is required to determine the potential impact. We estimate an initial investment of $50,000 to engage our incident response team and conduct a thorough analysis.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage our incident response team to conduct a thorough investigation and contain the potential threat.\n2. Allocate additional resources (up to $50,000) to support the investigation and response efforts.\n\n**RESOURCE REQUIREMENTS**\nTo respond to this incident, we need:\n\n1. Incident response team engagement\n2. Additional funding (up to $50,000) for investigation and response efforts\n3. IT team support for network analysis and data collection\n\n**BOARD REPORTING**\nWe recommend reporting this incident to the board at the next scheduled meeting, pending the outcome of our investigation.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a follow-up briefing in 72 hours with an update on the investigation's progress and any additional recommendations for executive action.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 8.448288440704346,
+        "risk_assessor": 5.837289571762085,
+        "incident_responder": 7.194601535797119,
+        "threat_intel": 9.70237922668457,
+        "executive_briefing": 5.084361791610718
+      },
+      "response_lengths": {
+        "technical_expert": 399,
+        "risk_assessor": 288,
+        "incident_responder": 364,
+        "threat_intel": 527,
+        "executive_briefing": 202
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "Medium",
+        "incident_responder": "High",
+        "threat_intel": "High",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:57:10.624125"
+  },
+  "input_data": {
+    "src_port": 443,
+    "dst_port": 7204,
+    "packet_size": 100,
+    "duration_ms": 488,
+    "protocol": "UNKNOWN"
+  },
+  "timestamp": "2025-07-02T12:57:10.624125"
+}

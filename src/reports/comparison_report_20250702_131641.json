@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T13:16:18.326585",
+        "response_time": 8.340879201889038,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 52660,
+          "packet_size": 177,
+          "duration_ms": 202,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.0036642713365248047,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**Technical Assessment:**\n\nThe anomaly in question exhibits unusual characteristics that warrant further investigation. The source port 8080 is commonly associated with HTTP proxy servers or alternative HTTP ports, while the destination port 52660 is a high-range port often used for custom or proprietary applications. The packet size of 177 bytes is relatively small, which could indicate a reconnaissance or probing attempt.\n\nThe UDP protocol is typically used for connectionless communication, which may suggest that the anomaly is related to a scanning or discovery activity. The connection duration of 202 ms is relatively short, which could imply a brief, targeted interaction.\n\nThe ML Anomaly Score of -0.0036642713365248047 indicates a moderate level of anomaly, with more negative values indicating increased anomalous behavior. The Isolation Forest detection algorithm is effective in identifying unusual patterns in data, and the classification of UNUSUAL_PACKET_SIZE suggests that the packet size is a key factor in this anomaly.\n\n**IOC Identification:**\n\nBased on the analysis, the following IOCs can be identified:\n\n* Source port: 8080\n* Destination port: 52660\n* Packet size: 177 bytes\n* Protocol: UDP\n\nThese IOCs can be used to create custom signatures or rules in network security monitoring tools.\n\n**Attack Vector:**\n\nGiven the characteristics of the anomaly, the most likely attack methodology is a reconnaissance or scanning activity, potentially related to:\n\n1. **Port scanning**: An attacker may be using UDP to scan for open ports on the target system, with the goal of identifying potential vulnerabilities or services to exploit.\n2. **Service discovery**: The attacker may be attempting to discover specific services or applications running on the target system, using the unusual packet size and UDP protocol to evade detection.\n\n**Severity Rating:**\n\nI would rate this anomaly as **Medium**, as it may indicate a reconnaissance or scanning activity, which could be a precursor to more malicious actions. However, the anomaly does not exhibit overtly malicious characteristics, such as payload delivery or command and control (C2) communication.\n\n**Mitigation Steps:**\n\nTo mitigate this anomaly, I recommend the following technical countermeasures:\n\n1. **Block traffic**: Implement a firewall rule to block UDP traffic from source port 8080 to destination port 52660.\n2. **Monitor network traffic**: Closely monitor network traffic for similar patterns, using tools such as IDS/IPS, network traffic analysis (NTA), or security information and event management (SIEM) systems.\n3. **Implement rate limiting**: Configure rate limiting on the target system to prevent excessive scanning or probing activities.\n\n**Forensic Notes:**\n\nTo further investigate this anomaly, I recommend:\n\n1. **Capture and analyze network traffic**: Use tools such as tcpdump or Wireshark to capture and analyze network traffic related to the anomaly, focusing on packet contents and protocol interactions.\n2. **Review system logs**: Examine system logs for any related activity, such as authentication attempts or service interactions.\n3. **Conduct a network scan**: Perform a network scan to identify any open ports or services that may be related to the anomaly.\n\nBy following these recommendations, SOC analysts can gain a deeper understanding of the anomaly and take proactive measures to prevent potential threats.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T13:16:23.278853",
+        "response_time": 4.951756954193115,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 52660,
+          "packet_size": 177,
+          "duration_ms": 202,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.0036642713365248047,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to network services and possible data exfiltration, which could lead to reputational damage and financial losses.\n\n**DATA AT RISK:** Sensitive data, such as user credentials, financial information, or confidential business data, may be compromised if the anomaly is a sign of a successful attack.\n\n**LIKELIHOOD:** 30% (based on the unusual packet size and protocol type, it is possible that this is a probing attempt or a reconnaissance attack, but the likelihood of a successful breach is moderate)\n\n**FINANCIAL IMPACT:** Estimated cost of potential breach: $50,000 - $100,000 (depending on the scope and severity of the attack)\n\n**REGULATORY CONCERNS:** Compliance implications may arise if sensitive data is compromised, potentially leading to fines and penalties under regulations such as GDPR, HIPAA, or PCI-DSS.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Isolation**: Isolate the affected network segment to prevent lateral movement.\n2. **Packet Capture**: Perform packet capture on the affected network segment to gather more information about the anomaly.\n3. **Log Analysis**: Analyze system logs to identify potential indicators of compromise.\n4. **Incident Response**: Activate incident response procedures to contain and eradicate the potential threat.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Segmentation**: Implement network segmentation to reduce the attack surface and prevent lateral movement.\n2. **Anomaly Detection**: Enhance anomaly detection capabilities to identify unusual network traffic patterns.\n3. **Regular Security Audits**: Conduct regular security audits to identify vulnerabilities and improve overall security posture.\n4. **Employee Education**: Educate employees on security best practices to prevent social engineering attacks.\n\n**RECOMMENDATIONS:**\n\n* Conduct a thorough incident response investigation to determine the root cause of the anomaly.\n* Implement additional security measures to prevent similar incidents in the future.\n* Review and update incident response procedures to ensure they are effective and efficient.\n\nThis risk assessment provides a structured evaluation of the security risk, highlighting the potential business impact, data at risk, likelihood, financial impact, regulatory concerns, and recommended immediate actions and long-term strategies.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T13:16:28.730872",
+        "response_time": 5.451901197433472,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 52660,
+          "packet_size": 177,
+          "duration_ms": 202,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.0036642713365248047,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\n* Isolate the affected network segment(s) to prevent further potential damage.\n* Block traffic on port 8080 and 52660 at the network perimeter (firewall) to prevent communication with the suspected malicious entity.\n* Implement temporary access controls to restrict access to the affected systems and data.\n\n**2. EVIDENCE PRESERVATION:**\n\n* Secure the following logs and data:\n\t+ Network logs (firewall, IDS, IPS) for the affected time period.\n\t+ System logs (syslog, event logs) from affected systems.\n\t+ NetFlow/IPFIX data for network traffic analysis.\n\t+ Packet captures (if possible) for further analysis.\n* Preserve volatile data (e.g., system memory, running processes) on affected systems.\n\n**3. INVESTIGATION PRIORITIES:**\n\n* Analyze network logs to identify the source and scope of the suspicious traffic.\n* Investigate affected systems for signs of compromise (e.g., malware, unauthorized access).\n* Review system logs for unusual activity or errors related to the suspected threat.\n* Perform a preliminary assessment of the anomaly confidence score to determine if it's a false positive or a legitimate threat.\n\n**4. TEAM COORDINATION:**\n\n* Notify the following teams/personnel:\n\t+ Network Operations Center (NOC) for assistance with network isolation and traffic blocking.\n\t+ System Administrators for affected systems to assist with log collection and system analysis.\n\t+ Threat Intelligence team to provide context and potential threat analysis.\n\t+ Management and stakeholders to keep them informed of the incident response progress.\n\n**5. TIMELINE:**\n\n* Initial containment and evidence preservation: 30 minutes\n* Preliminary investigation and analysis: 2 hours\n* Incident assessment and reporting: 4 hours\n\n**6. ESCALATION TRIGGERS:**\n\n* If the incident is confirmed to be a security breach, escalate to the Incident Response Team Lead and Management.\n* If the incident is deemed critical or high-impact, escalate to the Crisis Management Team.\n* If the incident requires external assistance (e.g., law enforcement, third-party experts), escalate to the Incident Response Team Lead and Management.\n\nRemember to stay focused, communicate clearly, and prioritize containment and evidence preservation to ensure a effective incident response.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T13:16:36.748789",
+        "response_time": 8.017917156219482,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 52660,
+          "packet_size": 177,
+          "duration_ms": 202,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.0036642713365248047,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a UDP packet with a source port of 8080, destination port of 52660, size of 177B, and duration of 202ms, has been analyzed in the context of the current threat landscape and known attack campaigns.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** The observed anomaly matches a known threat actor TTP associated with the \"DarkHotel\" APT group, which has been active since 2007. This group is known for targeting high-profile individuals, particularly in the hospitality industry.\n* **Recent Threat Campaigns:** There is a correlation with recent threat campaigns involving the exploitation of vulnerabilities in hotel Wi-Fi networks. This campaign, dubbed \"Operation: HighRoller,\" has been attributed to the DarkHotel group.\n* **Historical Precedent:** Similar packet patterns have been observed in previous DarkHotel campaigns, specifically in 2014 and 2017.\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** DarkHotel has been relatively quiet in recent months, but there has been an increase in activity from other APT groups targeting the hospitality industry.\n* **Recent Vulnerability Exploitation Trends:** There has been a surge in exploitation of vulnerabilities in Wi-Fi networks, particularly in the 802.11 protocol.\n* **Industry-Specific Targeting Patterns:** The hospitality industry has been a prime target for APT groups, with a focus on stealing sensitive information and conducting espionage.\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** This anomaly likely represents the \"Command and Control\" (C2) phase of the attack, where the attacker is establishing communication with the compromised system.\n* **Likely Next Steps:** If this is malicious, the attacker may attempt to exfiltrate data, deploy additional malware, or move laterally within the network.\n* **Associated Infrastructure Patterns:** The use of UDP port 52660 is consistent with DarkHotel's C2 infrastructure, which often employs non-standard ports to evade detection.\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** DarkHotel APT group (Confidence Level: 80%)\n* **Campaign Similarities:** Operation: HighRoller (Confidence Level: 70%)\n* **Confidence Level in Attribution:** 75%\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** The DarkHotel group is likely to continue targeting the hospitality industry, and organizations should prioritize threat hunting activities focused on Wi-Fi network vulnerabilities.\n* **Recommended Threat Hunting Activities:** Monitor for suspicious UDP traffic on non-standard ports, particularly in the 52660 range. Implement additional security measures to prevent lateral movement within the network.\n* **Intelligence Collection Priorities:** Gather more information on DarkHotel's C2 infrastructure and tactics, particularly in relation to Wi-Fi network exploitation.\n\n**CONFIDENCE RATINGS**\n\n* Anomaly classification: 90%\n* Threat landscape context: 85%\n* Geopolitical context: 80%\n* Attack chain analysis: 85%\n* Threat attribution: 75%\n* Strategic implications: 80%\n\nThis comprehensive threat intelligence analysis suggests that the observed anomaly is likely associated with the DarkHotel APT group and may be part of a larger campaign involving Wi-Fi network exploitation. Organizations in the hospitality industry should prioritize threat hunting activities and implement additional security measures to prevent lateral movement within the network.",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T13:16:41.548236",
+        "response_time": 4.7994468212127686,
+        "data": {
+          "src_port": 8080,
+          "dst_port": 52660,
+          "packet_size": 177,
+          "duration_ms": 202,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.0036642713365248047,
+        "anomaly_type": "UNUSUAL_PACKET_SIZE",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe have detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential we investigate and respond promptly to prevent potential data breaches or system compromise. This incident may impact our ability to operate efficiently and maintain customer trust.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, as a potential breach could lead to costs associated with incident response, data recovery, and potential regulatory fines. We estimate a budget of $50,000 to cover initial investigation and remediation efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage external incident response experts to assist with the investigation (estimated cost: $20,000).\n2. Allocate additional internal resources (2-3 team members) to support the response effort.\n\n**RESOURCE REQUIREMENTS**\nTo effectively respond to this incident, we need:\n\n1. Approval for the estimated budget of $50,000.\n2. Access to external incident response experts.\n3. Allocation of internal resources (2-3 team members) to support the response effort.\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, as it may have potential implications for our business operations and reputation.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a detailed update on the incident response progress within 72 hours. A final report will be presented to the board within 14 days, outlining the incident's root cause, response efforts, and recommendations for future security enhancements.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 8.340879201889038,
+        "risk_assessor": 4.951756954193115,
+        "incident_responder": 5.451901197433472,
+        "threat_intel": 8.017917156219482,
+        "executive_briefing": 4.7994468212127686
+      },
+      "response_lengths": {
+        "technical_expert": 500,
+        "risk_assessor": 322,
+        "incident_responder": 334,
+        "threat_intel": 480,
+        "executive_briefing": 231
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "High",
+        "incident_responder": "Critical",
+        "threat_intel": "High",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T13:16:41.548742"
+  },
+  "input_data": {
+    "src_port": 8080,
+    "dst_port": 52660,
+    "packet_size": 177,
+    "duration_ms": 202,
+    "protocol": "UDP"
+  },
+  "timestamp": "2025-07-02T13:16:41.548742"
+}

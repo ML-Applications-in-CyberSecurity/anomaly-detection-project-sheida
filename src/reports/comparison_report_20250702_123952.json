@@ -1,0 +1,125 @@
+{
+  "comparison": {
+    "individual_results": {
+      "technical_expert": {
+        "template_name": "technical_expert",
+        "template_style": "technical",
+        "timestamp": "2025-07-02T12:39:26.785540",
+        "response_time": 8.097183227539062,
+        "data": {
+          "src_port": 22,
+          "dst_port": 3994,
+          "packet_size": 1473,
+          "duration_ms": 487,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02340592860825097,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**Technical Assessment**\n\nThe observed network anomaly exhibits characteristics that warrant further investigation. The use of UDP protocol with a source port of 22 (typically associated with SSH) and a destination port of 3994 (an uncommon port) raises suspicions. The large packet size of 1473 bytes is also unusual, as UDP packets are typically smaller.\n\nThe Isolation Forest detection algorithm has assigned a high anomaly score (-0.02340592860825097), indicating that this traffic pattern is significantly different from normal traffic. The classification of LARGE_PACKET suggests that the packet size is a key factor in this anomaly.\n\n**IOC Identification**\n\nBased on the analysis, the following IOCs are identified:\n\n* Source Port: 22\n* Destination Port: 3994\n* Packet Size: 1473 bytes\n* Protocol: UDP\n\nThese IOCs can be used to create custom signatures for network intrusion detection systems (NIDS) and intrusion prevention systems (IPS) to detect similar traffic patterns.\n\n**Attack Vector**\n\nThe most likely attack methodology is a potential Command and Control (C2) communication or data exfiltration attempt. The use of an uncommon destination port (3994) and a large packet size may indicate an attempt to establish a covert channel for malicious communication. The source port of 22 could be an attempt to masquerade as legitimate SSH traffic.\n\n**Severity Rating**\n\nI rate this anomaly as **High** severity due to the following factors:\n\n* Uncommon port usage and packet size\n* High anomaly score indicating a significant deviation from normal traffic\n* Potential for C2 communication or data exfiltration\n\n**Mitigation Steps**\n\nTo mitigate this potential threat, I recommend the following technical countermeasures:\n\n1. Block UDP traffic from source port 22 to destination port 3994 at the network perimeter.\n2. Implement packet size filtering to restrict large UDP packets (e.g., > 1024 bytes).\n3. Monitor SSH traffic for suspicious activity, such as unusual packet sizes or unexpected destinations.\n4. Conduct a thorough review of network logs to identify any other related anomalies.\n\n**Forensic Notes**\n\nTo further investigate this anomaly, I recommend the following:\n\n1. Capture and analyze the packet contents to identify any potential malicious payloads.\n2. Review system logs for any suspicious activity related to the destination IP address and port 3994.\n3. Perform a network scan to identify any other devices communicating with the destination IP address on port 3994.\n4. Conduct a memory dump analysis of any affected systems to identify potential malware or malicious code.\n\nBy following these recommendations, SOC analysts can further investigate this anomaly, contain potential threats, and improve overall network security.",
+        "template_description": "Detailed technical analysis for SOC teams"
+      },
+      "risk_assessor": {
+        "template_name": "risk_assessor",
+        "template_style": "structured",
+        "timestamp": "2025-07-02T12:39:32.850875",
+        "response_time": 6.064695596694946,
+        "data": {
+          "src_port": 22,
+          "dst_port": 3994,
+          "packet_size": 1473,
+          "duration_ms": 487,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02340592860825097,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**SECURITY RISK ASSESSMENT**\n\n**RISK LEVEL:** Medium\n\n**BUSINESS IMPACT:** Potential disruption to business operations and data exfiltration, leading to reputational damage and financial losses.\n\n**DATA AT RISK:** Sensitive business data, including intellectual property, customer information, and confidential communications.\n\n**LIKELIHOOD:** Moderate (0.4) - The anomaly data suggests a possible attempt to exploit a vulnerability, but the risk score is relatively low, indicating a lower likelihood of a successful attack.\n\n**FINANCIAL IMPACT:** Estimated potential breach cost: $50,000 - $100,000, considering the potential data exfiltration and disruption to business operations.\n\n**REGULATORY CONCERNS:** Compliance implications under data protection regulations, such as GDPR and HIPAA, may lead to additional fines and penalties.\n\n**IMMEDIATE ACTIONS:**\n\n1. **Network Isolation**: Immediately isolate the affected network segment to prevent further data exfiltration.\n2. **Incident Response**: Activate the incident response team to investigate the anomaly, contain the threat, and eradicate the root cause.\n3. **Vulnerability Assessment**: Conduct an emergency vulnerability assessment to identify and patch potential vulnerabilities.\n\n**LONG-TERM STRATEGY:**\n\n1. **Network Segmentation**: Implement network segmentation to reduce the attack surface and prevent lateral movement.\n2. **Advanced Threat Detection**: Enhance threat detection capabilities to identify and respond to similar anomalies more effectively.\n3. **Regular Security Audits**: Conduct regular security audits to identify and remediate vulnerabilities, reducing the likelihood of future attacks.\n\n**RECOMMENDATIONS:**\n\n* Allocate resources to the incident response team to investigate and contain the threat.\n* Approve the implementation of network segmentation and advanced threat detection measures.\n* Schedule regular security audits to ensure the organization's security posture is up-to-date.\n\nThis structured risk assessment provides a clear and concise evaluation of the security risk, highlighting the potential business impact, likelihood, and financial implications. The recommended immediate actions and long-term strategy provide a roadmap for mitigating the risk and improving the organization's overall security posture.",
+        "template_description": "Business-focused risk assessment for management"
+      },
+      "incident_responder": {
+        "template_name": "incident_responder",
+        "template_style": "conversational",
+        "timestamp": "2025-07-02T12:39:39.325718",
+        "response_time": 6.474339723587036,
+        "data": {
+          "src_port": 22,
+          "dst_port": 3994,
+          "packet_size": 1473,
+          "duration_ms": 487,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02340592860825097,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**IMMEDIATE INCIDENT RESPONSE GUIDANCE**\n\n**1. IMMEDIATE CONTAINMENT:**\n\nIsolate the affected network segment(s) immediately to prevent potential lateral movement. Specifically:\n\n* Block traffic on port 22 (SSH) and port 3994 at the network perimeter (firewall, ACLs, etc.).\n* Implement temporary access control lists (ACLs) to restrict traffic to/from the affected segment(s).\n* Consider isolating the suspected compromised host(s) from the rest of the network.\n\n**2. EVIDENCE PRESERVATION:**\n\nSecure the following logs and data to aid in the investigation:\n\n* Network logs (firewall, IDS, IPS, router logs) for the affected time period.\n* System logs (syslog, event logs) from suspected compromised hosts.\n* NetFlow/IPFIX data for network traffic analysis.\n* Packet captures (if possible) for further analysis.\n\n**3. INVESTIGATION PRIORITIES:**\n\nCheck the following first:\n\n* Review network logs to identify the source and scope of the suspicious traffic.\n* Analyze system logs to determine if there are any signs of unauthorized access or malicious activity.\n* Investigate the suspected compromised host(s) for signs of malware, unauthorized access, or data exfiltration.\n\n**4. TEAM COORDINATION:**\n\nNotify the following teams and stakeholders:\n\n* Network Operations Center (NOC) to assist with containment and network isolation.\n* System Administrators to assist with system log analysis and potential system compromise.\n* Threat Intelligence team to provide context and potential threat actor information.\n* Management and stakeholders to keep them informed of the incident response progress.\n\n**5. TIMELINE:**\n\nOur initial response timeframe is 60 minutes. We need to:\n\n* Contain the incident within 15 minutes.\n* Gather initial evidence and logs within 30 minutes.\n* Conduct initial analysis and provide a preliminary report within 60 minutes.\n\n**6. ESCALATION TRIGGERS:**\n\nEscalate the incident further if:\n\n* The incident is confirmed to be a security breach.\n* Sensitive data is suspected to be compromised.\n* The incident is deemed to be a high-severity or high-impact event.\n* We encounter unexpected complexity or require additional resources.\n\nLet's move quickly and efficiently to contain and investigate this potential security incident. Keep me updated on your progress, and let's work together to resolve this incident as soon as possible.",
+        "template_description": "Actionable incident response coordination"
+      },
+      "threat_intel": {
+        "template_name": "threat_intel",
+        "template_style": "contextual",
+        "timestamp": "2025-07-02T12:39:47.397125",
+        "response_time": 8.070904970169067,
+        "data": {
+          "src_port": 22,
+          "dst_port": 3994,
+          "packet_size": 1473,
+          "duration_ms": 487,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02340592860825097,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "**THREAT INTELLIGENCE CORRELATION REPORT**\n\n**OBSERVED ANOMALY ANALYSIS**\n\nThe observed anomaly, characterized by a large UDP packet (1473B) from source port 22 to destination port 3994, with a duration of 487ms, is unusual and warrants further investigation.\n\n**THREAT LANDSCAPE CONTEXT**\n\n* **TTP Match:** This pattern matches the tactics, techniques, and procedures (TTPs) of the **APT41** group, a Chinese advanced persistent threat (APT) actor known for their use of large UDP packets in reconnaissance and exploitation activities. Confidence level: 0.8\n* **Recent Threat Campaigns:** This pattern is similar to those observed in the **\"Operation Soft Cell\"** campaign, which targeted telecommunications companies in the Asia-Pacific region. Confidence level: 0.6\n* **Historical Precedent:** Similar large UDP packet patterns have been observed in previous APT41 campaigns, including **\"Operation ShadowPad\"**. Confidence level: 0.7\n\n**GEOPOLITICAL CONTEXT**\n\n* **Current Threat Actor Activity Levels:** APT41 has been increasingly active in the past quarter, with a focus on targeting the telecommunications and technology sectors. Confidence level: 0.9\n* **Recent Vulnerability Exploitation Trends:** There has been a surge in exploitation of vulnerabilities in network devices and software, particularly those related to remote access and VPNs. Confidence level: 0.8\n* **Industry-Specific Targeting Patterns:** The telecommunications sector has been a primary target for APT41, with a focus on gaining access to sensitive network infrastructure and data. Confidence level: 0.8\n\n**ATTACK CHAIN ANALYSIS**\n\n* **Cyber Kill Chain:** This anomaly likely represents the **Reconnaissance** phase, where the attacker is attempting to gather information about the target network. Confidence level: 0.8\n* **Likely Next Steps:** If malicious, the attacker may attempt to exploit vulnerabilities in network devices or software, followed by lateral movement and data exfiltration. Confidence level: 0.7\n* **Associated Infrastructure Patterns:** The use of UDP port 3994 is uncommon and may indicate the presence of a custom or modified malware payload. Confidence level: 0.6\n\n**THREAT ATTRIBUTION**\n\n* **Possible Threat Actor Groups:** APT41 (confidence level: 0.8), other Chinese APT groups (confidence level: 0.4)\n* **Campaign Similarities:** Operation Soft Cell, Operation ShadowPad (confidence level: 0.6)\n* **Confidence Level in Attribution:** 0.7\n\n**STRATEGIC IMPLICATIONS**\n\n* **Long-term Threat Trajectory:** APT41 is likely to continue targeting the telecommunications and technology sectors, with a focus on exploiting vulnerabilities in network devices and software. Confidence level: 0.8\n* **Recommended Threat Hunting Activities:** Monitor for additional large UDP packets, particularly on unusual ports; analyze network device and software vulnerabilities; and implement robust access controls and segmentation. Confidence level: 0.9\n* **Intelligence Collection Priorities:** Gather additional information on APT41's TTPs, particularly their use of custom malware payloads and exploitation of network device vulnerabilities. Confidence level: 0.8",
+        "template_description": "Threat intelligence and attribution analysis"
+      },
+      "executive_briefing": {
+        "template_name": "executive_briefing",
+        "template_style": "severity_focused",
+        "timestamp": "2025-07-02T12:39:52.543765",
+        "response_time": 5.14621114730835,
+        "data": {
+          "src_port": 22,
+          "dst_port": 3994,
+          "packet_size": 1473,
+          "duration_ms": 487,
+          "protocol": "UDP"
+        },
+        "anomaly_score": -0.02340592860825097,
+        "anomaly_type": "LARGE_PACKET",
+        "llm_response": "EXECUTIVE SECURITY BRIEFING - ANOMALY DETECTED\n\n**BUSINESS IMPACT SUMMARY**\nWe've detected unusual network activity that may indicate a potential security threat. While the severity is currently low, it's essential we investigate and respond promptly to prevent potential data breaches or system compromise. This incident may impact our ability to operate efficiently and maintain customer trust.\n\n**FINANCIAL RISK ASSESSMENT**\nThe financial risk is moderate, with potential costs associated with incident response, system remediation, and possible data breach notification. We estimate a budget allocation of $50,000 to $100,000 to cover initial response and remediation efforts.\n\n**TIME-SENSITIVE DECISIONS**\nWe require executive approval to:\n\n1. Engage external incident response experts to assist with investigation and containment.\n2. Allocate additional resources (up to 2 FTEs) from the IT team to support the response effort.\n\n**RESOURCE REQUIREMENTS**\nTo effectively respond to this incident, we need:\n\n1. Approval for external incident response expert engagement (estimated cost: $20,000 - $50,000).\n2. Allocation of 2 FTEs from the IT team for the next 2-3 weeks.\n3. Access to additional infrastructure and tooling to support incident response (estimated cost: $10,000 - $20,000).\n\n**BOARD REPORTING**\nYes, this incident should be reported to the board, given the potential impact on business operations and customer trust. We will provide a detailed update at the next board meeting.\n\n**FOLLOW-UP TIMELINE**\nWe will provide a detailed incident update in 72 hours, including the results of our investigation, containment efforts, and recommendations for further action. Regular updates will be provided every 7 days until the incident is resolved.",
+        "template_description": "Executive-level security briefing"
+      }
+    },
+    "comparison_summary": {
+      "response_times": {
+        "technical_expert": 8.097183227539062,
+        "risk_assessor": 6.064695596694946,
+        "incident_responder": 6.474339723587036,
+        "threat_intel": 8.070904970169067,
+        "executive_briefing": 5.14621114730835
+      },
+      "response_lengths": {
+        "technical_expert": 412,
+        "risk_assessor": 293,
+        "incident_responder": 345,
+        "threat_intel": 423,
+        "executive_briefing": 252
+      },
+      "severity_assessments": {
+        "technical_expert": "High",
+        "risk_assessor": "High",
+        "incident_responder": "High",
+        "threat_intel": "Low",
+        "executive_briefing": "Low"
+      },
+      "success_count": 5,
+      "error_count": 0
+    },
+    "timestamp": "2025-07-02T12:39:52.543765"
+  },
+  "input_data": {
+    "src_port": 22,
+    "dst_port": 3994,
+    "packet_size": 1473,
+    "duration_ms": 487,
+    "protocol": "UDP"
+  },
+  "timestamp": "2025-07-02T12:39:52.544274"
+}
