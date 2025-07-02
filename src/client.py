@@ -984,6 +984,8 @@ def main():
                             packet_count += 1
 
                             print(f'📥 Packet #{packet_count}: {data}')
+                            if packet_count == os.getenv("PACKET_COUNT", 100):
+                                raise KeyboardInterrupt
 
                             # Detect anomaly
                             is_anomaly, anomaly_score = detector.detect_anomaly(data)
