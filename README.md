@@ -211,6 +211,8 @@ The system identifies 10+ types of network anomalies:
    - Threat type rankings
    - Risk assessment matrix
    - Timeline with trend analysis
+     
+![](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/images/security_dashboard.png)
 
 2. **PCA Analysis** (Dimensional reduction)
    - Normal vs anomalous traffic separation
@@ -218,16 +220,25 @@ The system identifies 10+ types of network anomalies:
    - 46.6% total variance explained
    - Clear anomaly clustering patterns
 
+![](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/images/pca_analysis.png)
+
 3. **Correlation Analysis**
    - Strong negative correlation: src_port ↔ packet_size (-0.524)
    - Moderate negative correlation: src_port ↔ duration_ms (-0.314)
    - Positive correlation: duration_ms ↔ anomaly_score (0.223)
+     
+![](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/images/correlation_analysis.png)
 
 4. **AI Performance Metrics**
    - Response time analysis across templates
    - Template usage frequency tracking
    - Error rate monitoring (0% in testing)
    - Response quality assessment
+     
+![](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/images/performance_analysis.png)
+![](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/images/template_severity_distribution.png)
+
+
 
 ### Sample Detection Output
 
