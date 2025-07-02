@@ -18,7 +18,7 @@ This production-ready security system monitors network traffic in real-time, ide
 
 ## 🏗️ System Architecture
 
-![Security Operations Flowchart](src/images/Mermaid Chart.png)
+![Security Operations Flowchart](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/images/Mermaid%20Chart.png)
 
 ### Core Components
 
@@ -441,7 +441,7 @@ python client.py
 
 <div align="center">
 
-**[📊 View Live Demo](src/reports/interactive_dashboard.html)** | 
+**[📊 View Live Demo](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/blob/main/src/reports/interactive_dashboard.html)** | 
 **[📖 Full Documentation](documentation)** | 
 **[🐛 Report Issues](https://github.com/ML-Applications-in-CyberSecurity/anomaly-detection-project-sheida/issues)** |
 **[💬 Get Support](https://github.com/SheidaAbedpour)**
